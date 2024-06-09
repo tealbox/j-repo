@@ -1,0 +1,143 @@
+#-------------------------------------------------------------------------------
+# Name:        zoneBasedFW
+#-------------------------------------------------------------------------------
+import json
+from sdwan import *
+
+def createZoneBasedFW(zoneBasedFWname, zoneBasedFWdescription, defaultAction, sourceZone, destinationZone):
+    sourceZoneId = getZoneId(sourceZone)
+    destinationZoneId = getZoneId(destinationZone)
+    return \
+        {
+            "name": name,
+            "type": "zoneBasedFW",
+            "description": description,
+            "definition": {
+                "defaultAction": {
+                    "type": "drop"
+                },
+                "sequences": [],
+                "entries": [
+                    {
+                        "sourceZone": sourceZoneId,
+                        "destinationZone": destinationZoneId
+                    }
+                ]
+            },
+            "mode": "security",
+            "optimized": "false",
+            "isActivatedByVsmart": False
+        }
+
+
+class ZoneBasedFW:
+    def __init__(self, zoneBasedFWname="", zoneBasedFWdescription="", defaultAction="", sourceZoneId="", destinationZoneId=""):
+        self.zoneBasedFW = {
+                "name": zoneBasedFWname,
+                "type": "zoneBasedFW",
+                "description": zoneBasedFWdescription,
+                "definition": {
+                    "defaultAction": {
+                        "type": "drop"
+                    },
+                    "sequences": [],
+                    "entries": [
+                        {
+                            "sourceZone": sourceZoneId,
+                            "destinationZone": destinationZoneId
+                        }
+                    ]
+                },
+                "mode": "security",
+                "optimized": "false",
+                "isActivatedByVsmart": False
+            }
+
+    def createSequence(self, field, ref):
+        self.sequence = {
+            "field": field,
+            "ref": ref
+            }
+
+    def createValueSequence(self, field, ref):
+        self.sequence = {
+            "field": field,
+            "value": ref
+            }
+
+    def createSequenceRule(self, sequenceId, sequenceName="", baseAction="", sourceDataPrefixList="", destinationDataPrefixList="", sourcePortList='any', destinationPortList='any'):
+        baseActions = {"drop", "pass", "inspect"}
+        if baseAction not in baseActions:
+            raise ValueError("results: status must be one of %r." % baseActions)
+        self.sequenceRule = {
+                    "sequenceId": sequenceId,
+                    "sequenceName": sequenceName,
+                    "sequenceIpType": "ipv4",
+                    "baseAction": baseAction,
+                    "sequenceType": "zoneBasedFW",
+                    "match": {
+                        "entries": []
+                    },
+                    "actions": [
+                        {
+                            "type": "log",
+                            "parameter": ""
+                        }
+                    ]
+                }
+
+    def addSequence2Rule(self):
+        self.sequenceRule["match"]["entries"].append(self.sequence)
+
+    def addSequenceRule2zoneBasedFW(self):
+        self.zoneBasedFW['definition']['sequences'].append(self.sequenceRule)
+
+    def getZoneByName(self):
+        api = '/template/policy/list/zone'
+        zone = self.wk.get(api=api, method="GET", payload={})
+        print(zone)
+
+
+def createSequenceRule(sequenceId, sequenceName="", baseAction="", sourceDataPrefixList="", destinationDataPrefixList="", sourcePortList='any', destinationPortList='any'):
+    baseActions = {"drop", "pass", "inspect"}
+    if baseAction not in baseActions:
+        raise ValueError("results: status must be one of %r." % baseActions)
+    return \
+            {
+                "sequenceId": sequenceId,
+                "sequenceName": sequenceName,
+                "sequenceIpType": "ipv4",
+                "baseAction": baseAction,
+                "sequenceType": "zoneBasedFW",
+                "match": {
+                    "entries": []
+                },
+                "actions": [
+                    {
+                        "type": "log",
+                        "parameter": ""
+                    }
+                ]
+            }
+##
+##def main():
+####    print( json.dumps( createSequenceRule(12, sequenceName="Self-to-INFRALOC", baseAction="drop", sourceDataPrefixList="SRC_List",
+####        destinationDataPrefixList="Dest_list", sourcePortList='any', destinationPortList='any'), indent=2) )
+##
+##    c90 = ZoneBasedFW("ZWTest","ZWDESC", "drop", "SRC_ID", "DEST_ID")
+##    c90.createSequence("TEST_Field1", "REf_ID1")
+##    c90.createSequenceRule(10,"Rule-11","pass", "SRC_PList","DEST_Plist")
+##    c90.addSequence2Rule()
+##    c90.createSequence("TEST_Field2", "REf_ID2")
+##    c90.addSequence2Rule()
+##    c90.addSequenceRule2zoneBasedFW()
+##    c90.createSequenceRule(12,"Rule-12","pass", "SRC_PList12","DEST_Plist21")
+##    c90.createSequence("TEST_Field3", "REf_ID3")
+##    c90.addSequence2Rule()
+##    c90.addSequenceRule2zoneBasedFW()
+##    print(json.dumps( c90.zoneBasedFW, indent=2))
+##
+##    pass
+##
+##if __name__ == '__main__':
+##    main()
