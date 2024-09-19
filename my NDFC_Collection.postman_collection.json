@@ -1,0 +1,420 @@
+{
+	"info": {
+		"_postman_id": "02f57def-fbd0-4e76-aefe-774352401609",
+		"name": "NDFC_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "NDFC Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"domain\": \"local\",\n    \"userName\": \"{{ndfc_username}}\",\n    \"userPasswd\": \"{{ndfc_password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://{{ndfc_hostname}}/login"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Check Inventory",
+			"item": [
+				{
+					"name": "Get all switches",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://10.10.20.60/appcenter/cisco/ndfc/api/v1/lan-fabric/rest/inventory/allswitches"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Fabrics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://10.10.20.60/appcenter/cisco/ndfc/api/v1/lan-fabric/rest/control/fabrics"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create Resource",
+			"item": [
+				{
+					"name": "Create VRF",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fabric\": \"DevNet_Fabric\",\n  \"vrfName\": \"VRF_POSTMAN\",\n  \"vrfTemplate\": \"Default_VRF_Universal\",\n  \"vrfExtensionTemplate\": \"Default_VRF_Extension_Universal\",\n  \"vrfId\": 51000,\n  \"vrfTemplateConfig\": {\n    \"vrfName\": \"VRF_POSTMAN\",\n    \"vrfSegmentId\": 51000,\n    \"vrfDescription\": \"vrf from postman\",\n    \"vrfVlanId\": 2100,\n    \"vrfVlanName\": \"VRF_POSTMAN_VLAN\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://{{ndfc_hostname}}/appcenter/cisco/ndfc/api/v1/lan-fabric/rest/top-down/v2/fabrics/DevNet_Fabric/vrfs"
+					},
+					"response": []
+				},
+				{
+					"name": "Create VRF Attachment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\n    \"vrfName\": \"VRF_POSTMAN\",\n    \"lanAttachList\": [\n      {\n        \"fabric\": \"DevNet_Fabric\",\n        \"vrfName\": \"VRF_POSTMAN\",\n        \"serialNumber\": \"9AY2XFS2QX9\",\n        \"vlan\": 2100,\n        \"deployment\": true\n      },\n      {\n        \"fabric\": \"DevNet_Fabric\",\n        \"vrfName\": \"VRF_POSTMAN\",\n        \"serialNumber\": \"992AKRQRXDC\",\n        \"vlan\": 2100,\n        \"deployment\": true\n      }\n    ]\n  }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://{{ndfc_hostname}}/appcenter/cisco/ndfc/api/v1/lan-fabric/rest/top-down/v2/fabrics/DevNet_Fabric/vrfs/attachments"
+					},
+					"response": []
+				},
+				{
+					"name": "Deploy all config",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "https://{{ndfc_hostname}}/appcenter/cisco/ndfc/api/v1/lan-fabric/rest/control/fabrics/DevNet_Fabric/config-deploy"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Add New Leaf to Fabric",
+			"item": [
+				{
+					"name": "Check switch reachability for discovery",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"system_name\", jsonData[0].sysName);",
+									"pm.collectionVariables.set(\"system_serial\", jsonData[0].serialNumber);",
+									"pm.collectionVariables.set(\"system_ip_address\", jsonData[0].ipaddr);",
+									"pm.collectionVariables.set(\"system_platform\", jsonData[0].platform);",
+									"pm.collectionVariables.set(\"system_version\", jsonData[0].version);",
+									"pm.collectionVariables.set(\"system_device_idx\", jsonData[0].deviceIndex);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"maxHops\":\"0\",\"seedIP\":\"{{system_ip_address}}\",\"cdpSecondTimeout\":5,\"snmpV3AuthProtocol\":0,\"username\":\"{{system_username}}\",\"password\":\"{{system_password}}\",\"preserveConfig\":false,\"discoveryCredForLan\":false}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://{{ndfc_hostname}}/appcenter/cisco/ndfc/api/v1/lan-fabric/rest/control/fabrics/DevNet_Fabric/inventory/test-reachability"
+					},
+					"response": []
+				},
+				{
+					"name": "Discover switch",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"maxHops\":\"0\",\"seedIP\":\"{{system_ip_address}}\",\"cdpSecondTimeout\":5,\"snmpV3AuthProtocol\":0,\"username\":\"{{system_username}}\",\"password\":\"{{system_password}}\",\"preserveConfig\":false,\"discoveryCredForLan\":false,\"switches\":[{\"ipaddr\":\"{{system_ip_address}}\",\"sysName\":\"{{system_name}}\",\"deviceIndex\":\"{{system_device_idx}}\",\"platform\":\"{{system_platform}}\",\"version\":\"{{system_version}}\",\"serialNumber\":\"{{system_serial}}\"}]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://{{ndfc_hostname}}/appcenter/cisco/ndfc/api/v1/lan-fabric/rest/control/fabrics/DevNet_Fabric/inventory/discover"
+					},
+					"response": []
+				},
+				{
+					"name": "Change switch role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"role\":\"leaf\",\"serialNumber\":\"{{system_serial}}\"}]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://{{ndfc_hostname}}/appcenter/cisco/ndfc/api/v1/lan-fabric/rest/control/switches/roles"
+					},
+					"response": []
+				},
+				{
+					"name": "Recalculate and deploy (config save) for fabric",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "https://{{ndfc_hostname}}/appcenter/cisco/ndfc/api/v1/lan-fabric/rest/control/fabrics/DevNet_Fabric/config-save"
+					},
+					"response": []
+				},
+				{
+					"name": "Deploy all config",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "https://{{ndfc_hostname}}/appcenter/cisco/ndfc/api/v1/lan-fabric/rest/control/fabrics/DevNet_Fabric/config-deploy"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DESC",
+			"item": [
+				{
+					"name": "DESC Change",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"destinationDevice\": \"9AY2XFS2QX9\",\r\n \"destinationFabric\": \"DevNet_Fabric\",\r\n \"destinationInterface\": \"Ethernet1/7\",\r\n \"destinationSwitchName\": \"leaf1\",\r\n \"sourceDevice\": \"93YKA0NGQ1E\",\r\n \"sourceFabric\": \"DevNet_Fabric\",\r\n \"sourceInterface\": \"Ethernet1/1\",\r\n \"sourceSwitchName\": \"spine1\",\r\n \"is-discovered\": false,\r\n \"is-planned\": false,\r\n \"is-port-channel\": false,\r\n \"is-present\": true,\r\n \"link-dbid\": 58000,\r\n \"link-type\": \"ethisl\",\r\n \"link-uuid\": \"LINK-UUID-33800\",\r\n \"nvPairs\": {\"ADMIN_STATE\": \"true\",\r\n             \"BFD_AUTH_KEY\": \"\",\r\n             \"BFD_AUTH_KEY_ID\": \"100\",\r\n             \"BFD_ENABLE\": \"false\",\r\n             \"BFD_IBGP_ENABLE\": \"false\",\r\n             \"ENABLE_PEER1_DHCP_RELAY\": \"false\",\r\n             \"ENABLE_PEER2_DHCP_RELAY\": \"false\",\r\n             \"EXTRA_CONF_INTRA_LINKS\": \"\",\r\n             \"FABRIC1\": \"DevNet_Fabric\",\r\n             \"FABRIC2\": \"DevNet_Fabric\",\r\n             \"FABRIC_VPC_QOS\": \"false\",\r\n             \"FABRIC_VPC_QOS_POLICY_NAME\": \"spine_qos_for_fabric_vpc_peering\",\r\n             \"HOSTNAME1\": \"spine1\",\r\n             \"HOSTNAME2\": \"leaf1\",\r\n             \"INBAND_POAP_DHCP_SERVERS\": \"\",\r\n             \"ISIS_AUTH_KEYCHAIN_NAME\": \"\",\r\n             \"ISIS_P2P_ENABLE\": \"false\",\r\n             \"IS_TYPE\": \"level-2\",\r\n             \"LINK_STATE_ROUTING_TAG\": \"UNDERLAY\",\r\n             \"MTU\": \"9216\",\r\n             \"OSPF_AREA_ID\": \"0.0.0.0\",\r\n             \"OSPF_AUTH_KEY\": \"\",\r\n             \"OSPF_AUTH_KEY_ID\": \"\",\r\n             \"PEER1_BFD_ECHO_DISABLE\": \"false\",\r\n             \"PEER1_CONF\": \"\",\r\n             \"PEER1_DESC\": \"NDFC_MONITOR: connected-to-leaf1-Ethernet1/7\",\r\n             \"PEER1_INTF\": \"Ethernet1/1\",\r\n             \"PEER1_IP\": \"10.4.0.5\",\r\n             \"PEER1_PORTTYPE_FABRIC\": \"false\",\r\n             \"PEER1_SN\": \"92LZAL1LMD7\",\r\n             \"PEER1_V6IP\": \"\",\r\n             \"PEER2_BFD_ECHO_DISABLE\": \"false\",\r\n             \"PEER2_CONF\": \"\",\r\n             \"PEER2_DESC\": \"NDFC_MONITOR: connected-to-spine1-Ethernet1/1\",\r\n             \"PEER2_INTF\": \"Ethernet1/7\",\r\n             \"PEER2_IP\": \"10.4.0.6\",\r\n             \"PEER2_PORTTYPE_FABRIC\": \"false\",\r\n             \"PEER2_SN\": \"9AY2XFS2QX9\",\r\n             \"PEER2_V6IP\": \"\",\r\n             \"PIM_HELLO_AUTH_KEY\": \"\",\r\n             \"POLICY_DESC\": \"\",\r\n             \"POLICY_ID\": \"POLICY-44670\",\r\n             \"PRIORITY\": \"500\",\r\n             \"PTP\": \"false\",\r\n             \"REPLICATION_MODE\": \"Multicast\",\r\n             \"SPEED\": \"Auto\"},\r\n \"policyId\": \"POLICY-44670\",\r\n \"sw1-info\": {\"ethsw-DBID\": 30440,\r\n              \"fabric-id\": \"2\",\r\n              \"fabric-name\": \"DevNet_Fabric\",\r\n              \"if-admin-status\": \"Up\",\r\n              \"if-name\": \"Ethernet1/1\",\r\n              \"if-op-reason\": \"none\",\r\n              \"if-op-status\": \"Up\",\r\n              \"is-vdc\": \"false\",\r\n              \"sw-UUID\": \"DCNM-UUID-30470\",\r\n              \"sw-UUID-ID\": 30470,\r\n              \"sw-model-name\": \"N9K-C9300v\",\r\n              \"sw-serial-number\": \"93YKA0NGQ1E\",\r\n              \"sw-sys-name\": \"spine1\",\r\n              \"switch-role\": \"spine\",\r\n              \"vdc-id\": \"0\"},\r\n \"sw2-info\": {\"ethsw-DBID\": 30340,\r\n              \"fabric-id\": \"2\",\r\n              \"fabric-name\": \"DevNet_Fabric\",\r\n              \"if-admin-status\": \"Up\",\r\n              \"if-name\": \"Ethernet1/7\",\r\n              \"if-op-reason\": \"none\",\r\n              \"if-op-status\": \"Up\",\r\n              \"is-vdc\": \"false\",\r\n              \"sw-UUID\": \"DCNM-UUID-30370\",\r\n              \"sw-UUID-ID\": 30370,\r\n              \"sw-model-name\": \"N9K-C9300v\",\r\n              \"sw-serial-number\": \"9AY2XFS2QX9\",\r\n              \"sw-sys-name\": \"leaf1\",\r\n              \"switch-role\": \"leaf\",\r\n              \"vdc-id\": \"0\"},\r\n \"templateName\": \"int_intra_fabric_num_link\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://{{ndfc_hostname}}/appcenter/cisco/ndfc/api/v1/lan-fabric/rest/control/links/LINK-UUID-33800"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"policy\": \"int_mgmt\",\r\n  \"interfaces\": [\r\n    {\r\n      \"serialNumber\": \"9AY2XFS2QX9\",\r\n      \"fabricName\": \"DevNet_Fabric\",\r\n      \"ifName\": \"mgmt0\",\r\n      \"interfaceType\": \"INTERFACE_MGMT\",\r\n      \"nvPairs\": {\r\n        \"ADMIN_STATE\": \"true\",\r\n        \"CDP_ENABLE\": \"false\",\r\n        \"DESC\": \"POSTMAN leaf1 mgmt interface OOB\",\r\n        \"CONF\": \"  ip address 10.10.20.173/24\",\r\n        \"INTF_NAME\": \"mgmt0\"\r\n      }\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{ndfc_hostname}}/appcenter/cisco/ndfc/api/v1/lan-fabric/rest/globalInterface/pti?isMultiEdit=false",
+							"protocol": "https",
+							"host": [
+								"{{ndfc_hostname}}"
+							],
+							"path": [
+								"appcenter",
+								"cisco",
+								"ndfc",
+								"api",
+								"v1",
+								"lan-fabric",
+								"rest",
+								"globalInterface",
+								"pti"
+							],
+							"query": [
+								{
+									"key": "isMultiEdit",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deploy Config",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "https://{{ndfc_hostname}}/appcenter/cisco/ndfc/api/v1/lan-fabric/rest/globalInterface/deploy"
+					},
+					"response": []
+				},
+				{
+					"name": "Deploy Config Links",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://{{ndfc_hostname}}/appcenter/cisco/ndfc/api/v1/lan-fabric/rest/control/fabrics/DevNet_Fabric/config-deploy/9AY2XFS2QX9?forceShowRun=false",
+							"protocol": "https",
+							"host": [
+								"{{ndfc_hostname}}"
+							],
+							"path": [
+								"appcenter",
+								"cisco",
+								"ndfc",
+								"api",
+								"v1",
+								"lan-fabric",
+								"rest",
+								"control",
+								"fabrics",
+								"DevNet_Fabric",
+								"config-deploy",
+								"9AY2XFS2QX9"
+							],
+							"query": [
+								{
+									"key": "forceShowRun",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ndfc_username",
+			"value": "admin",
+			"type": "string"
+		},
+		{
+			"key": "ndfc_password",
+			"value": "1vtG@lw@y",
+			"type": "string"
+		},
+		{
+			"key": "ndfc_hostname",
+			"value": "10.10.20.60",
+			"type": "string"
+		},
+		{
+			"key": "system_username",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "system_password",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "system_ip_address",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "system_name",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "system_serial",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "system_platform",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "system_version",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "system_device_idx",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "system_name",
+			"value": ""
+		},
+		{
+			"key": "system_serial",
+			"value": ""
+		},
+		{
+			"key": "system_ip_address",
+			"value": ""
+		},
+		{
+			"key": "system_platform",
+			"value": ""
+		},
+		{
+			"key": "system_version",
+			"value": ""
+		},
+		{
+			"key": "system_device_idx",
+			"value": ""
+		}
+	]
+}
