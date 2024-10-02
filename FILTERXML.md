@@ -3,7 +3,7 @@
 ## =FILTERXML(A1,"//s[1]")
 ## =FILTERXML(CONCAT("<t><s>",SUBSTITUTE(A1,"-","</s><s>"),"</s></t>"), "//s[1]")
 ```
-
+```
 **1) All Elements:**
 
 =FILTERXML(<XML>,"//s")
@@ -242,3 +242,4 @@ Returns: 456 (The maximum value looking at numeric nodes)
 Returns: 123 (The minimum value looking at numeric nodes)
 
 NOTE: This is the equivalent to returning all numeric nodes as per #3 and post-process the array using Excel's MIN() and MAX() functions.
+```
