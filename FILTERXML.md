@@ -1,9 +1,31 @@
 ```
+XML stands for "Extensible Markup Language." It's basically a way to structure data in a hierarchical format. Think of it like a family tree, where each piece of data (or "element") is a branch off of the main trunk. Here's an example:
+
+<book>
+  <title>Human Life</title>
+  <author>Harper Lee</author>
+  <published>1960</published>
+</book>
+This snippet of XML represents a book. The <book> element is the main trunk, and the <title>, <author>, and <published> elements are the branches. Each element contains a piece of data.
+
+=FILTERXML(A1,"//title")
+Here's what's happening:
+
+The A1 argument is the cell containing the XML string.
+The "//title" argument tells FILTERXML to look for the <title> element anywhere within the XML string.
+When you enter this formula into an Excel cell, it will return "Human Life," the contents of the <title> element in the XML string.
+
 ## =CONCAT("<t><s>",SUBSTITUTE(A1,"-","</s><s>"),"</s></t>")
 ## =FILTERXML(A1,"//s[1]")
 ## =FILTERXML(CONCAT("<t><s>",SUBSTITUTE(A1,"-","</s><s>"),"</s></t>"), "//s[1]")
 ```
 ```
+
+=FILTERXML(B22,"//q["&B25&"]") ######### B25 contain element number
+="<DATA><A>"& SUBSTITUTE(C3, " ", "</A><A>") & "</A></DATA>"
+=FILTERXML(C5, “/DATA/A[3]”)
+to extract the 3rd word from our XML converted sentence.
+
 **1) All Elements:**
 
 =FILTERXML(<XML>,"//s")
