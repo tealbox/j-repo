@@ -1,7 +1,8 @@
+```
 ## =CONCAT("<t><s>",SUBSTITUTE(A1,"-","</s><s>"),"</s></t>")
 ## =FILTERXML(A1,"//s[1]")
 ## =FILTERXML(CONCAT("<t><s>",SUBSTITUTE(A1,"-","</s><s>"),"</s></t>"), "//s[1]")
-
+```
 
 **1) All Elements:**
 
