@@ -1,0 +1,941 @@
+{
+  "results": [
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "10.78.41.6"
+          ],
+          "resource_type": "IPAddressExpression",
+          "id": "2b659b16-6728-4bdc-8eab-83c2fe9cb21c",
+          "path": "/infra/domains/mgw/groups/ADM/ip-address-expressions/2b659b16-6728-4bdc-8eab-83c2fe9cb21c",
+          "relative_path": "2b659b16-6728-4bdc-8eab-83c2fe9cb21c",
+          "parent_path": "/infra/domains/mgw/groups/ADM",
+          "remote_path": "",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ],
+      "extended_expression": [],
+      "reference": false,
+      "group_type": [
+        "IPAddress"
+      ],
+      "resource_type": "Group",
+      "id": "ADM",
+      "display_name": "ADM",
+      "path": "/infra/domains/mgw/groups/ADM",
+      "relative_path": "ADM",
+      "parent_path": "/infra/domains/mgw",
+      "remote_path": "",
+      "unique_id": "81cf308a-2c7d-4797-8025-7cd65efee174",
+      "realization_id": "81cf308a-2c7d-4797-8025-7cd65efee174",
+      "owner_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "origin_site_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "marked_for_delete": false,
+      "overridden": false,
+      "_create_time": 1724411424670,
+      "_create_user": "daniel.keen@vmwareid",
+      "_last_modified_time": 1724411424670,
+      "_last_modified_user": "daniel.keen@vmwareid",
+      "_system_owned": false,
+      "_protection": "NOT_PROTECTED",
+      "_revision": 0
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "10.77.41.11"
+          ],
+          "resource_type": "IPAddressExpression",
+          "id": "a6a91d03-50b8-4fe1-a971-c2b14e91e4ad",
+          "path": "/infra/domains/mgw/groups/AUA1-MGMT/ip-address-expressions/a6a91d03-50b8-4fe1-a971-c2b14e91e4ad",
+          "relative_path": "a6a91d03-50b8-4fe1-a971-c2b14e91e4ad",
+          "parent_path": "/infra/domains/mgw/groups/AUA1-MGMT",
+          "remote_path": "",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ],
+      "extended_expression": [],
+      "reference": false,
+      "resource_type": "Group",
+      "id": "AUA1-MGMT",
+      "display_name": "AUA1-MGMT",
+      "path": "/infra/domains/mgw/groups/AUA1-MGMT",
+      "relative_path": "AUA1-MGMT",
+      "parent_path": "/infra/domains/mgw",
+      "remote_path": "",
+      "unique_id": "46892269-2436-4785-b9b9-909599b71c49",
+      "realization_id": "46892269-2436-4785-b9b9-909599b71c49",
+      "owner_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "origin_site_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "marked_for_delete": false,
+      "overridden": false,
+      "_create_time": 1623186415116,
+      "_create_user": "alex.nance@vmwareid",
+      "_last_modified_time": 1623186415117,
+      "_last_modified_user": "alex.nance@vmwareid",
+      "_system_owned": false,
+      "_protection": "NOT_PROTECTED",
+      "_revision": 0
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "10.78.3.0/24"
+          ],
+          "resource_type": "IPAddressExpression",
+          "id": "b61ffcec-9861-42fb-ac3d-685d27d26681",
+          "path": "/infra/domains/mgw/groups/AVAMAR/ip-address-expressions/b61ffcec-9861-42fb-ac3d-685d27d26681",
+          "relative_path": "b61ffcec-9861-42fb-ac3d-685d27d26681",
+          "parent_path": "/infra/domains/mgw/groups/AVAMAR",
+          "remote_path": "",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ],
+      "extended_expression": [],
+      "reference": false,
+      "resource_type": "Group",
+      "id": "AVAMAR",
+      "display_name": "AVAMAR",
+      "path": "/infra/domains/mgw/groups/AVAMAR",
+      "relative_path": "AVAMAR",
+      "parent_path": "/infra/domains/mgw",
+      "remote_path": "",
+      "unique_id": "8a967b63-a7c8-47df-8c86-53ed262a75c7",
+      "realization_id": "8a967b63-a7c8-47df-8c86-53ed262a75c7",
+      "owner_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "origin_site_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "marked_for_delete": false,
+      "overridden": false,
+      "_create_time": 1628690626022,
+      "_create_user": "alex.nance@vmwareid",
+      "_last_modified_time": 1628690626024,
+      "_last_modified_user": "alex.nance@vmwareid",
+      "_system_owned": false,
+      "_protection": "NOT_PROTECTED",
+      "_revision": 0
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "3.106.87.192",
+            "13.238.239.5",
+            "10.176.0.0/16"
+          ],
+          "resource_type": "IPAddressExpression",
+          "id": "f6137696-7f1c-445f-82a1-3ed86433253a",
+          "path": "/infra/domains/mgw/groups/AWAUEXT1_SRM/ip-address-expressions/f6137696-7f1c-445f-82a1-3ed86433253a",
+          "relative_path": "f6137696-7f1c-445f-82a1-3ed86433253a",
+          "parent_path": "/infra/domains/mgw/groups/AWAUEXT1_SRM",
+          "remote_path": "",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ],
+      "extended_expression": [],
+      "reference": false,
+      "resource_type": "Group",
+      "id": "AWAUEXT1_SRM",
+      "display_name": "AWAUEXT1_SRM",
+      "path": "/infra/domains/mgw/groups/AWAUEXT1_SRM",
+      "relative_path": "AWAUEXT1_SRM",
+      "parent_path": "/infra/domains/mgw",
+      "remote_path": "",
+      "unique_id": "bf7232e8-7f30-415c-afed-7cd5d489a2c7",
+      "realization_id": "bf7232e8-7f30-415c-afed-7cd5d489a2c7",
+      "owner_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "origin_site_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "marked_for_delete": false,
+      "overridden": false,
+      "_create_time": 1597346798948,
+      "_create_user": "james.finnegan@vmwareid",
+      "_last_modified_time": 1609950970810,
+      "_last_modified_user": "system",
+      "_system_owned": false,
+      "_protection": "NOT_PROTECTED",
+      "_revision": 1
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "10.71.41.32"
+          ],
+          "resource_type": "IPAddressExpression",
+          "id": "b3e38b49-fd3f-4ace-b9b5-c5e0d89298f2",
+          "path": "/infra/domains/mgw/groups/Ansible/ip-address-expressions/b3e38b49-fd3f-4ace-b9b5-c5e0d89298f2",
+          "relative_path": "b3e38b49-fd3f-4ace-b9b5-c5e0d89298f2",
+          "parent_path": "/infra/domains/mgw/groups/Ansible",
+          "remote_path": "",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ],
+      "extended_expression": [],
+      "reference": false,
+      "resource_type": "Group",
+      "id": "Ansible",
+      "display_name": "Ansible",
+      "path": "/infra/domains/mgw/groups/Ansible",
+      "relative_path": "Ansible",
+      "parent_path": "/infra/domains/mgw",
+      "remote_path": "",
+      "unique_id": "e4a0b2f3-35a6-4c57-98de-41f5c3dba096",
+      "realization_id": "e4a0b2f3-35a6-4c57-98de-41f5c3dba096",
+      "owner_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "origin_site_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "marked_for_delete": false,
+      "overridden": false,
+      "_create_time": 1656683015124,
+      "_create_user": "daniel.keen@vmwareid",
+      "_last_modified_time": 1656683015127,
+      "_last_modified_user": "daniel.keen@vmwareid",
+      "_system_owned": false,
+      "_protection": "NOT_PROTECTED",
+      "_revision": 0
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "10.209.3.0/25",
+            "192.168.238.0/23",
+            "10.209.0.0/25",
+            "10.208.0.0/16",
+            "10.209.1.0/25",
+            "10.209.2.0/25",
+            "192.168.240.0/23",
+            "10.202.11.251",
+            "192.168.239.0/24"
+          ],
+          "resource_type": "IPAddressExpression",
+          "id": "1e2b54a9-bdb7-4302-b9eb-c89a80c370eb",
+          "path": "/infra/domains/mgw/groups/CUSTOMER/ip-address-expressions/1e2b54a9-bdb7-4302-b9eb-c89a80c370eb",
+          "relative_path": "1e2b54a9-bdb7-4302-b9eb-c89a80c370eb",
+          "parent_path": "/infra/domains/mgw/groups/CUSTOMER",
+          "remote_path": "",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ],
+      "extended_expression": [],
+      "reference": false,
+      "resource_type": "Group",
+      "id": "CUSTOMER",
+      "display_name": "CUSTOMER",
+      "path": "/infra/domains/mgw/groups/CUSTOMER",
+      "relative_path": "CUSTOMER",
+      "parent_path": "/infra/domains/mgw",
+      "remote_path": "",
+      "unique_id": "83b98196-24b0-4148-98ca-18200f74e07e",
+      "realization_id": "83b98196-24b0-4148-98ca-18200f74e07e",
+      "owner_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "origin_site_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "marked_for_delete": false,
+      "overridden": false,
+      "_create_time": 1592480012143,
+      "_create_user": "michael.forbes@vmwareid",
+      "_last_modified_time": 1727804698813,
+      "_last_modified_user": "alex.nance@vmwareid",
+      "_system_owned": false,
+      "_protection": "NOT_PROTECTED",
+      "_revision": 5
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "10.71.41.21",
+            "192.168.10.55",
+            "192.168.10.23"
+          ],
+          "resource_type": "IPAddressExpression",
+          "id": "f931e6f2-6929-4805-aba6-fc0c41300968",
+          "path": "/infra/domains/mgw/groups/DFW-MGMT/ip-address-expressions/f931e6f2-6929-4805-aba6-fc0c41300968",
+          "relative_path": "f931e6f2-6929-4805-aba6-fc0c41300968",
+          "parent_path": "/infra/domains/mgw/groups/DFW-MGMT",
+          "remote_path": "",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ],
+      "extended_expression": [],
+      "reference": false,
+      "resource_type": "Group",
+      "id": "DFW-MGMT",
+      "display_name": "DFW-MGMT",
+      "path": "/infra/domains/mgw/groups/DFW-MGMT",
+      "relative_path": "DFW-MGMT",
+      "parent_path": "/infra/domains/mgw",
+      "remote_path": "",
+      "unique_id": "dba5d631-fb58-4223-9d15-7193108f1c99",
+      "realization_id": "dba5d631-fb58-4223-9d15-7193108f1c99",
+      "owner_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "origin_site_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "marked_for_delete": false,
+      "overridden": false,
+      "_create_time": 1615569625567,
+      "_create_user": "alex.nance@vmwareid",
+      "_last_modified_time": 1727790020846,
+      "_last_modified_user": "alex.nance@vmwareid",
+      "_system_owned": false,
+      "_protection": "NOT_PROTECTED",
+      "_revision": 1
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "10.178.16.0/20",
+            "10.178.32.0/20"
+          ],
+          "resource_type": "IPAddressExpression",
+          "id": "0efe9fa1-351e-4888-a2cf-ec7f4f43bb99",
+          "path": "/infra/domains/mgw/groups/ESXI/ip-address-expressions/0efe9fa1-351e-4888-a2cf-ec7f4f43bb99",
+          "relative_path": "0efe9fa1-351e-4888-a2cf-ec7f4f43bb99",
+          "parent_path": "/infra/domains/mgw/groups/ESXI",
+          "remote_path": "",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ],
+      "extended_expression": [],
+      "reference": false,
+      "resource_type": "Group",
+      "id": "ESXI",
+      "display_name": "ESXi",
+      "description": "ESXI",
+      "tags": [
+        {
+          "scope": "",
+          "tag": "SYSTEM_DEFINED_GROUP"
+        }
+      ],
+      "path": "/infra/domains/mgw/groups/ESXI",
+      "relative_path": "ESXI",
+      "parent_path": "/infra/domains/mgw",
+      "remote_path": "",
+      "unique_id": "3e1093f2-33fe-4f39-968e-020a7c4a5954",
+      "realization_id": "3e1093f2-33fe-4f39-968e-020a7c4a5954",
+      "owner_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "origin_site_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "marked_for_delete": false,
+      "overridden": false,
+      "_create_time": 1592415813900,
+      "_create_user": "admin",
+      "_last_modified_time": 1609950971076,
+      "_last_modified_user": "system",
+      "_system_owned": false,
+      "_protection": "NOT_PROTECTED",
+      "_revision": 1
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "10.178.224.25/32"
+          ],
+          "resource_type": "IPAddressExpression",
+          "id": "2934caeb-ac17-42cc-a2a1-c69762da795a",
+          "path": "/infra/domains/mgw/groups/HCX/ip-address-expressions/2934caeb-ac17-42cc-a2a1-c69762da795a",
+          "relative_path": "2934caeb-ac17-42cc-a2a1-c69762da795a",
+          "parent_path": "/infra/domains/mgw/groups/HCX",
+          "remote_path": "",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ],
+      "extended_expression": [],
+      "reference": false,
+      "resource_type": "Group",
+      "id": "HCX",
+      "display_name": "HCX",
+      "description": "HCX",
+      "tags": [
+        {
+          "scope": "",
+          "tag": "SYSTEM_DEFINED_GROUP"
+        }
+      ],
+      "path": "/infra/domains/mgw/groups/HCX",
+      "relative_path": "HCX",
+      "parent_path": "/infra/domains/mgw",
+      "remote_path": "",
+      "unique_id": "cd4f7143-c899-4a9b-b7b9-30d132d0c86a",
+      "realization_id": "cd4f7143-c899-4a9b-b7b9-30d132d0c86a",
+      "owner_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "origin_site_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "marked_for_delete": false,
+      "overridden": false,
+      "_create_time": 1727699432225,
+      "_create_user": "admin",
+      "_last_modified_time": 1727699432225,
+      "_last_modified_user": "admin",
+      "_system_owned": false,
+      "_protection": "NOT_PROTECTED",
+      "_revision": 0
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "10.254.208.2"
+          ],
+          "resource_type": "IPAddressExpression",
+          "id": "b325ccbe-b515-4519-96ea-5e48dd5b3bb7",
+          "path": "/infra/domains/mgw/groups/HCX-GRP-10.254.208.2-vmc/ip-address-expressions/b325ccbe-b515-4519-96ea-5e48dd5b3bb7",
+          "relative_path": "b325ccbe-b515-4519-96ea-5e48dd5b3bb7",
+          "parent_path": "/infra/domains/mgw/groups/HCX-GRP-10.254.208.2-vmc",
+          "remote_path": "",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ],
+      "extended_expression": [],
+      "reference": false,
+      "resource_type": "Group",
+      "id": "HCX-GRP-10.254.208.2-vmc",
+      "display_name": "HCX-GRP-10.254.208.2-vmc",
+      "description": "HCX Group for redirection rules",
+      "path": "/infra/domains/mgw/groups/HCX-GRP-10.254.208.2-vmc",
+      "relative_path": "HCX-GRP-10.254.208.2-vmc",
+      "parent_path": "/infra/domains/mgw",
+      "remote_path": "",
+      "unique_id": "236fdf24-16bb-4a4d-aa53-62d6677ab955",
+      "realization_id": "236fdf24-16bb-4a4d-aa53-62d6677ab955",
+      "owner_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "origin_site_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "marked_for_delete": false,
+      "overridden": false,
+      "_create_time": 1729097369114,
+      "_create_user": "admin",
+      "_last_modified_time": 1729097369114,
+      "_last_modified_user": "admin",
+      "_system_owned": false,
+      "_protection": "NOT_PROTECTED",
+      "_revision": 0
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "169.254.197.4"
+          ],
+          "resource_type": "IPAddressExpression",
+          "id": "5f0e10dd-5e3a-4a77-90f7-d5801770fb0a",
+          "path": "/infra/domains/mgw/groups/HCX-GRP-169.254.197.4-vmc/ip-address-expressions/5f0e10dd-5e3a-4a77-90f7-d5801770fb0a",
+          "relative_path": "5f0e10dd-5e3a-4a77-90f7-d5801770fb0a",
+          "parent_path": "/infra/domains/mgw/groups/HCX-GRP-169.254.197.4-vmc",
+          "remote_path": "",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ],
+      "extended_expression": [],
+      "reference": false,
+      "resource_type": "Group",
+      "id": "HCX-GRP-169.254.197.4-vmc",
+      "display_name": "HCX-GRP-169.254.197.4-vmc",
+      "description": "HCX Group for redirection rules",
+      "path": "/infra/domains/mgw/groups/HCX-GRP-169.254.197.4-vmc",
+      "relative_path": "HCX-GRP-169.254.197.4-vmc",
+      "parent_path": "/infra/domains/mgw",
+      "remote_path": "",
+      "unique_id": "45598f80-9ea2-412d-a960-3f550f6991bb",
+      "realization_id": "45598f80-9ea2-412d-a960-3f550f6991bb",
+      "owner_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "origin_site_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "marked_for_delete": false,
+      "overridden": false,
+      "_create_time": 1729094257040,
+      "_create_user": "admin",
+      "_last_modified_time": 1729094257040,
+      "_last_modified_user": "admin",
+      "_system_owned": false,
+      "_protection": "NOT_PROTECTED",
+      "_revision": 0
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "10.73.41.23"
+          ],
+          "resource_type": "IPAddressExpression",
+          "id": "b606f353-bf75-43c7-9e6a-b8e73f543fd6",
+          "path": "/infra/domains/mgw/groups/LON-MGMT/ip-address-expressions/b606f353-bf75-43c7-9e6a-b8e73f543fd6",
+          "relative_path": "b606f353-bf75-43c7-9e6a-b8e73f543fd6",
+          "parent_path": "/infra/domains/mgw/groups/LON-MGMT",
+          "remote_path": "",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ],
+      "extended_expression": [],
+      "reference": false,
+      "resource_type": "Group",
+      "id": "LON-MGMT",
+      "display_name": "LON-MGMT",
+      "path": "/infra/domains/mgw/groups/LON-MGMT",
+      "relative_path": "LON-MGMT",
+      "parent_path": "/infra/domains/mgw",
+      "remote_path": "",
+      "unique_id": "41e8f7de-c8b3-4e66-b8e3-c7d3d1c006a5",
+      "realization_id": "41e8f7de-c8b3-4e66-b8e3-c7d3d1c006a5",
+      "owner_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "origin_site_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "marked_for_delete": false,
+      "overridden": false,
+      "_create_time": 1623174626363,
+      "_create_user": "alex.nance@vmwareid",
+      "_last_modified_time": 1623174626365,
+      "_last_modified_user": "alex.nance@vmwareid",
+      "_system_owned": false,
+      "_protection": "NOT_PROTECTED",
+      "_revision": 0
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "10.178.192.3/32",
+            "10.178.192.4/32",
+            "10.178.192.6/32",
+            "10.178.192.5/32"
+          ],
+          "resource_type": "IPAddressExpression",
+          "id": "0e5230f1-cd53-4500-a76d-a8ec5afc3d46",
+          "path": "/infra/domains/mgw/groups/NSX-MANAGER/ip-address-expressions/0e5230f1-cd53-4500-a76d-a8ec5afc3d46",
+          "relative_path": "0e5230f1-cd53-4500-a76d-a8ec5afc3d46",
+          "parent_path": "/infra/domains/mgw/groups/NSX-MANAGER",
+          "remote_path": "",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ],
+      "extended_expression": [],
+      "reference": false,
+      "resource_type": "Group",
+      "id": "NSX-MANAGER",
+      "display_name": "NSX Manager",
+      "description": "NSX-MANAGER",
+      "tags": [
+        {
+          "scope": "",
+          "tag": "SYSTEM_DEFINED_GROUP"
+        }
+      ],
+      "path": "/infra/domains/mgw/groups/NSX-MANAGER",
+      "relative_path": "NSX-MANAGER",
+      "parent_path": "/infra/domains/mgw",
+      "remote_path": "",
+      "unique_id": "1cd33b50-5faa-4df9-9666-ce35e4be9106",
+      "realization_id": "1cd33b50-5faa-4df9-9666-ce35e4be9106",
+      "owner_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "origin_site_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "marked_for_delete": false,
+      "overridden": false,
+      "_create_time": 1592415815197,
+      "_create_user": "admin",
+      "_last_modified_time": 1670597605781,
+      "_last_modified_user": "admin",
+      "_system_owned": false,
+      "_protection": "NOT_PROTECTED",
+      "_revision": 2
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "119.9.63.6",
+            "95.138.140.236",
+            "119.9.61.128",
+            "69.20.116.180",
+            "50.57.199.106",
+            "83.138.188.4",
+            "159.135.130.64",
+            "50.56.156.4",
+            "180.150.148.198"
+          ],
+          "resource_type": "IPAddressExpression",
+          "id": "783f85e1-bd6f-4f7d-b4cb-e6b00cb11cd8",
+          "path": "/infra/domains/mgw/groups/RAX_RVI_INFRA/ip-address-expressions/783f85e1-bd6f-4f7d-b4cb-e6b00cb11cd8",
+          "relative_path": "783f85e1-bd6f-4f7d-b4cb-e6b00cb11cd8",
+          "parent_path": "/infra/domains/mgw/groups/RAX_RVI_INFRA",
+          "remote_path": "",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ],
+      "extended_expression": [],
+      "reference": false,
+      "resource_type": "Group",
+      "id": "RAX_RVI_INFRA",
+      "display_name": "RAX_RVI_INFRA",
+      "path": "/infra/domains/mgw/groups/RAX_RVI_INFRA",
+      "relative_path": "RAX_RVI_INFRA",
+      "parent_path": "/infra/domains/mgw",
+      "remote_path": "",
+      "unique_id": "2552a7aa-7b6d-4ed9-a9ff-6211a1c01893",
+      "realization_id": "2552a7aa-7b6d-4ed9-a9ff-6211a1c01893",
+      "owner_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "origin_site_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "marked_for_delete": false,
+      "overridden": false,
+      "_create_time": 1592479781933,
+      "_create_user": "michael.forbes@vmwareid",
+      "_last_modified_time": 1609950970829,
+      "_last_modified_user": "system",
+      "_system_owned": false,
+      "_protection": "NOT_PROTECTED",
+      "_revision": 1
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "119.9.186.89",
+            "146.20.127.166",
+            "166.78.202.24",
+            "67.192.182.76",
+            "173.203.182.12",
+            "134.213.35.60",
+            "120.136.34.236",
+            "159.135.131.128",
+            "172.99.83.206"
+          ],
+          "resource_type": "IPAddressExpression",
+          "id": "fe9f9123-1bb3-48d5-aefb-66af68040dc2",
+          "path": "/infra/domains/mgw/groups/RAX_VDO_INFRA/ip-address-expressions/fe9f9123-1bb3-48d5-aefb-66af68040dc2",
+          "relative_path": "fe9f9123-1bb3-48d5-aefb-66af68040dc2",
+          "parent_path": "/infra/domains/mgw/groups/RAX_VDO_INFRA",
+          "remote_path": "",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ],
+      "extended_expression": [],
+      "reference": false,
+      "resource_type": "Group",
+      "id": "RAX_VDO_INFRA",
+      "display_name": "RAX_VDO_INFRA",
+      "path": "/infra/domains/mgw/groups/RAX_VDO_INFRA",
+      "relative_path": "RAX_VDO_INFRA",
+      "parent_path": "/infra/domains/mgw",
+      "remote_path": "",
+      "unique_id": "a34c716b-3b24-4bc4-a379-5f09d292dd25",
+      "realization_id": "a34c716b-3b24-4bc4-a379-5f09d292dd25",
+      "owner_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "origin_site_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "marked_for_delete": false,
+      "overridden": false,
+      "_create_time": 1592479889252,
+      "_create_user": "michael.forbes@vmwareid",
+      "_last_modified_time": 1609950970864,
+      "_last_modified_user": "system",
+      "_system_owned": false,
+      "_protection": "NOT_PROTECTED",
+      "_revision": 1
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "10.178.224.24/32"
+          ],
+          "resource_type": "IPAddressExpression",
+          "id": "dceb9fd3-b629-4623-b401-bccab30f9a2c",
+          "path": "/infra/domains/mgw/groups/SITE_RECOVERY_MANAGER/ip-address-expressions/dceb9fd3-b629-4623-b401-bccab30f9a2c",
+          "relative_path": "dceb9fd3-b629-4623-b401-bccab30f9a2c",
+          "parent_path": "/infra/domains/mgw/groups/SITE_RECOVERY_MANAGER",
+          "remote_path": "",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ],
+      "extended_expression": [],
+      "reference": false,
+      "resource_type": "Group",
+      "id": "SITE_RECOVERY_MANAGER",
+      "display_name": "Site Recovery Manager",
+      "description": "SITE_RECOVERY_MANAGER",
+      "tags": [
+        {
+          "scope": "",
+          "tag": "SYSTEM_DEFINED_GROUP"
+        }
+      ],
+      "path": "/infra/domains/mgw/groups/SITE_RECOVERY_MANAGER",
+      "relative_path": "SITE_RECOVERY_MANAGER",
+      "parent_path": "/infra/domains/mgw",
+      "remote_path": "",
+      "unique_id": "20a5f4cb-11fa-4d91-9de8-d0dc95915a60",
+      "realization_id": "20a5f4cb-11fa-4d91-9de8-d0dc95915a60",
+      "owner_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "origin_site_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "marked_for_delete": false,
+      "overridden": false,
+      "_create_time": 1597345605643,
+      "_create_user": "admin",
+      "_last_modified_time": 1619433545297,
+      "_last_modified_user": "admin",
+      "_system_owned": false,
+      "_protection": "NOT_PROTECTED",
+      "_revision": 2
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "169.254.254.254",
+            "10.254.208.2/32"
+          ],
+          "resource_type": "IPAddressExpression",
+          "id": "22b3412d-6945-4c29-b506-b40538d2489a",
+          "path": "/infra/domains/mgw/groups/hcx-ix-ips-direct-connect-vmc/ip-address-expressions/22b3412d-6945-4c29-b506-b40538d2489a",
+          "relative_path": "22b3412d-6945-4c29-b506-b40538d2489a",
+          "parent_path": "/infra/domains/mgw/groups/hcx-ix-ips-direct-connect-vmc",
+          "remote_path": "",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ],
+      "extended_expression": [],
+      "reference": false,
+      "resource_type": "Group",
+      "id": "hcx-ix-ips-direct-connect-vmc",
+      "display_name": "hcx-ix-ips-direct-connect-vmc",
+      "tags": [
+        {
+          "scope": "",
+          "tag": "SYSTEM_DEFINED_GROUP"
+        }
+      ],
+      "path": "/infra/domains/mgw/groups/hcx-ix-ips-direct-connect-vmc",
+      "relative_path": "hcx-ix-ips-direct-connect-vmc",
+      "parent_path": "/infra/domains/mgw",
+      "remote_path": "",
+      "unique_id": "f57b577e-b5e6-4354-86d8-0774680e33b6",
+      "realization_id": "f57b577e-b5e6-4354-86d8-0774680e33b6",
+      "owner_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "origin_site_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "marked_for_delete": false,
+      "overridden": false,
+      "_create_time": 1729088379045,
+      "_create_user": "admin",
+      "_last_modified_time": 1729097376881,
+      "_last_modified_user": "admin",
+      "_system_owned": false,
+      "_protection": "NOT_PROTECTED",
+      "_revision": 8
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "169.254.254.254"
+          ],
+          "resource_type": "IPAddressExpression",
+          "id": "0b366e94-f58b-4b0c-9636-32b014aa4799",
+          "path": "/infra/domains/mgw/groups/hcx-ix-ips-public-vmc/ip-address-expressions/0b366e94-f58b-4b0c-9636-32b014aa4799",
+          "relative_path": "0b366e94-f58b-4b0c-9636-32b014aa4799",
+          "parent_path": "/infra/domains/mgw/groups/hcx-ix-ips-public-vmc",
+          "remote_path": "",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ],
+      "extended_expression": [],
+      "reference": false,
+      "resource_type": "Group",
+      "id": "hcx-ix-ips-public-vmc",
+      "display_name": "hcx-ix-ips-public-vmc",
+      "description": "HCX IX appliances' uplink IP addresses.",
+      "tags": [
+        {
+          "scope": "",
+          "tag": "SYSTEM_DEFINED_GROUP"
+        }
+      ],
+      "path": "/infra/domains/mgw/groups/hcx-ix-ips-public-vmc",
+      "relative_path": "hcx-ix-ips-public-vmc",
+      "parent_path": "/infra/domains/mgw",
+      "remote_path": "",
+      "unique_id": "2d80d1d8-1b94-4458-ad7a-e28cf877f406",
+      "realization_id": "2d80d1d8-1b94-4458-ad7a-e28cf877f406",
+      "owner_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "origin_site_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "marked_for_delete": false,
+      "overridden": false,
+      "_create_time": 1729090156908,
+      "_create_user": "admin",
+      "_last_modified_time": 1729090835413,
+      "_last_modified_user": "admin",
+      "_system_owned": false,
+      "_protection": "NOT_PROTECTED",
+      "_revision": 1
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "10.178.224.4/32"
+          ],
+          "resource_type": "IPAddressExpression",
+          "id": "2c280f5d-d8dd-4f9e-bc11-fcb893d147f6",
+          "path": "/infra/domains/mgw/groups/VCENTER/ip-address-expressions/2c280f5d-d8dd-4f9e-bc11-fcb893d147f6",
+          "relative_path": "2c280f5d-d8dd-4f9e-bc11-fcb893d147f6",
+          "parent_path": "/infra/domains/mgw/groups/VCENTER",
+          "remote_path": "",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ],
+      "extended_expression": [],
+      "reference": false,
+      "resource_type": "Group",
+      "id": "VCENTER",
+      "display_name": "vCenter",
+      "description": "VCENTER",
+      "tags": [
+        {
+          "scope": "",
+          "tag": "SYSTEM_DEFINED_GROUP"
+        }
+      ],
+      "path": "/infra/domains/mgw/groups/VCENTER",
+      "relative_path": "VCENTER",
+      "parent_path": "/infra/domains/mgw",
+      "remote_path": "",
+      "unique_id": "76d11909-2960-4d0f-8cf7-62c037a30721",
+      "realization_id": "76d11909-2960-4d0f-8cf7-62c037a30721",
+      "owner_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "origin_site_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "marked_for_delete": false,
+      "overridden": false,
+      "_create_time": 1592415812623,
+      "_create_user": "admin",
+      "_last_modified_time": 1609950971171,
+      "_last_modified_user": "system",
+      "_system_owned": false,
+      "_protection": "NOT_PROTECTED",
+      "_revision": 1
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "10.178.224.23/32"
+          ],
+          "resource_type": "IPAddressExpression",
+          "id": "60c1c1d2-e573-45c7-bd55-ea080e06d460",
+          "path": "/infra/domains/mgw/groups/VSPHERE_REPLICATION/ip-address-expressions/60c1c1d2-e573-45c7-bd55-ea080e06d460",
+          "relative_path": "60c1c1d2-e573-45c7-bd55-ea080e06d460",
+          "parent_path": "/infra/domains/mgw/groups/VSPHERE_REPLICATION",
+          "remote_path": "",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ],
+      "extended_expression": [],
+      "reference": false,
+      "resource_type": "Group",
+      "id": "VSPHERE_REPLICATION",
+      "display_name": "vSphere Replication",
+      "description": "VSPHERE_REPLICATION",
+      "tags": [
+        {
+          "scope": "",
+          "tag": "SYSTEM_DEFINED_GROUP"
+        }
+      ],
+      "path": "/infra/domains/mgw/groups/VSPHERE_REPLICATION",
+      "relative_path": "VSPHERE_REPLICATION",
+      "parent_path": "/infra/domains/mgw",
+      "remote_path": "",
+      "unique_id": "3dceecee-595d-4ff4-ad0b-fbab23f187ff",
+      "realization_id": "3dceecee-595d-4ff4-ad0b-fbab23f187ff",
+      "owner_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "origin_site_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "marked_for_delete": false,
+      "overridden": false,
+      "_create_time": 1597345048555,
+      "_create_user": "admin",
+      "_last_modified_time": 1619433542425,
+      "_last_modified_user": "admin",
+      "_system_owned": false,
+      "_protection": "NOT_PROTECTED",
+      "_revision": 2
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "10.176.0.0/16"
+          ],
+          "resource_type": "IPAddressExpression",
+          "id": "b323edf4-4ee0-45b5-a0b7-8b73305ed328",
+          "path": "/infra/domains/mgw/groups/VSPHERE_REPLICATION_SCALE_OUT/ip-address-expressions/b323edf4-4ee0-45b5-a0b7-8b73305ed328",
+          "relative_path": "b323edf4-4ee0-45b5-a0b7-8b73305ed328",
+          "parent_path": "/infra/domains/mgw/groups/VSPHERE_REPLICATION_SCALE_OUT",
+          "remote_path": "",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ],
+      "extended_expression": [],
+      "reference": false,
+      "resource_type": "Group",
+      "id": "VSPHERE_REPLICATION_SCALE_OUT",
+      "display_name": "vSphere Replication Scale Out",
+      "description": "Address group with CIDRs of paired VMC sites and/or vSphere Replication inbound rule source IPs.",
+      "path": "/infra/domains/mgw/groups/VSPHERE_REPLICATION_SCALE_OUT",
+      "relative_path": "VSPHERE_REPLICATION_SCALE_OUT",
+      "parent_path": "/infra/domains/mgw",
+      "remote_path": "",
+      "unique_id": "7dad1a44-5716-4adf-925c-7515bab29d64",
+      "realization_id": "7dad1a44-5716-4adf-925c-7515bab29d64",
+      "owner_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "origin_site_id": "72370f9b-e244-4581-b2e8-52ccca10f6d4",
+      "marked_for_delete": false,
+      "overridden": false,
+      "_create_time": 1710318754201,
+      "_create_user": "admin",
+      "_last_modified_time": 1710318754201,
+      "_last_modified_user": "admin",
+      "_system_owned": false,
+      "_protection": "NOT_PROTECTED",
+      "_revision": 0
+    }
+  ],
+  "result_count": 21,
+  "sort_by": "display_name",
+  "sort_ascending": true
+}

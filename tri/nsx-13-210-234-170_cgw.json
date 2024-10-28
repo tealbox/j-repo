@@ -1,0 +1,300 @@
+{
+  "results": [
+    {
+      "logging_enabled": false,
+      "target_type": "DFW",
+      "resource_type": "SecurityPolicy",
+      "display_name": "Cloud VPN Access",
+      "path": "/infra/domains/cgw/security-policies/Cloud_VPN_Access",
+      "parent_path": "/infra/domains/cgw",
+      "remote_path": "",
+      "marked_for_delete": false,
+      "overridden": false,
+      "category": "Emergency",
+      "stateful": true,
+      "tcp_strict": true,
+      "locked": false,
+      "lock_modified_time": 0,
+      "scope": [
+        "ANY"
+      ],
+      "is_default": false
+    },
+    {
+      "logging_enabled": false,
+      "target_type": "DFW",
+      "resource_type": "SecurityPolicy",
+      "display_name": "Active Directory",
+      "path": "/infra/domains/cgw/security-policies/Active_Directory",
+      "parent_path": "/infra/domains/cgw",
+      "remote_path": "",
+      "marked_for_delete": false,
+      "overridden": false,
+      "category": "Infrastructure",
+      "stateful": true,
+      "tcp_strict": true,
+      "locked": false,
+      "lock_modified_time": 0,
+      "scope": [
+        "ANY"
+      ],
+      "is_default": false
+    },
+    {
+      "logging_enabled": false,
+      "resource_type": "SecurityPolicy",
+      "display_name": "Universal FWLB",
+      "path": "/infra/domains/cgw/security-policies/Universal_FWLB",
+      "parent_path": "/infra/domains/cgw",
+      "remote_path": "",
+      "marked_for_delete": false,
+      "overridden": false,
+      "category": "Environment",
+      "stateful": true,
+      "tcp_strict": true,
+      "locked": false,
+      "lock_modified_time": 0,
+      "scope": [
+        "ANY"
+      ],
+      "is_default": false
+    },
+    {
+      "logging_enabled": false,
+      "resource_type": "SecurityPolicy",
+      "display_name": "Root Management AD",
+      "path": "/infra/domains/cgw/security-policies/xxx",
+      "parent_path": "/infra/domains/cgw",
+      "remote_path": "",
+      "marked_for_delete": false,
+      "overridden": false,
+      "category": "Environment",
+      "stateful": true,
+      "tcp_strict": true,
+      "locked": false,
+      "lock_modified_time": 0,
+      "scope": [
+        "ANY"
+      ],
+      "is_default": false
+    },
+    {
+      "logging_enabled": false,
+      "target_type": "DFW",
+      "resource_type": "SecurityPolicy",
+      "display_name": "Shared Management AD",
+      "path": "/infra/domains/cgw/security-policies/Root_Management_AD",
+      "parent_path": "/infra/domains/cgw",
+      "remote_path": "",
+      "marked_for_delete": false,
+      "overridden": false,
+      "category": "Environment",
+      "stateful": true,
+      "tcp_strict": true,
+      "locked": false,
+      "lock_modified_time": 0,
+      "scope": [
+        "ANY"
+      ],
+      "is_default": false
+    },
+    {
+      "logging_enabled": false,
+      "target_type": "DFW",
+      "resource_type": "SecurityPolicy",
+      "display_name": "Shared Management Trusted",
+      "path": "/infra/domains/cgw/security-policies/Shared_Management_Trusted",
+      "parent_path": "/infra/domains/cgw",
+      "remote_path": "",
+      "marked_for_delete": false,
+      "overridden": false,
+      "category": "Environment",
+      "stateful": true,
+      "tcp_strict": true,
+      "locked": false,
+      "lock_modified_time": 0,
+      "scope": [
+        "ANY"
+      ],
+      "is_default": false
+    },
+    {
+      "logging_enabled": false,
+      "target_type": "DFW",
+      "resource_type": "SecurityPolicy",
+      "display_name": "Cloud Management AD",
+      "path": "/infra/domains/cgw/security-policies/Cloud_Management_AD",
+      "parent_path": "/infra/domains/cgw",
+      "remote_path": "",
+      "marked_for_delete": false,
+      "overridden": false,
+      "category": "Environment",
+      "stateful": true,
+      "tcp_strict": true,
+      "locked": false,
+      "lock_modified_time": 0,
+      "scope": [
+        "ANY"
+      ],
+      "is_default": false
+    },
+    {
+      "logging_enabled": false,
+      "resource_type": "SecurityPolicy",
+      "display_name": "Cloud Management SQL",
+      "path": "/infra/domains/cgw/security-policies/Cloud_Management_SQL",
+      "parent_path": "/infra/domains/cgw",
+      "remote_path": "",
+      "marked_for_delete": false,
+      "overridden": false,
+      "category": "Environment",
+      "stateful": true,
+      "tcp_strict": true,
+      "locked": false,
+      "lock_modified_time": 0,
+      "scope": [
+        "ANY"
+      ],
+      "is_default": false
+    },
+    {
+      "logging_enabled": false,
+      "target_type": "DFW",
+      "resource_type": "SecurityPolicy",
+      "display_name": "Cloud Management Trusted",
+      "path": "/infra/domains/cgw/security-policies/Cloud_Management_Trusted",
+      "parent_path": "/infra/domains/cgw",
+      "remote_path": "",
+      "marked_for_delete": false,
+      "overridden": false,
+      "category": "Environment",
+      "stateful": true,
+      "tcp_strict": true,
+      "locked": false,
+      "lock_modified_time": 0,
+      "scope": [
+        "ANY"
+      ],
+      "is_default": false
+    },
+    {
+      "logging_enabled": false,
+      "resource_type": "SecurityPolicy",
+      "display_name": "Cloud Management DMZ",
+      "path": "/infra/domains/cgw/security-policies/Cloud_Management_DMZ",
+      "parent_path": "/infra/domains/cgw",
+      "remote_path": "",
+      "marked_for_delete": false,
+      "overridden": false,
+      "category": "Environment",
+      "stateful": true,
+      "tcp_strict": true,
+      "locked": false,
+      "lock_modified_time": 0,
+      "scope": [
+        "ANY"
+      ],
+      "is_default": false
+    },
+    {
+      "logging_enabled": false,
+      "target_type": "DFW",
+      "resource_type": "SecurityPolicy",
+      "display_name": "Cloud Test SQL",
+      "path": "/infra/domains/cgw/security-policies/Cloud_Test_SQL",
+      "parent_path": "/infra/domains/cgw",
+      "remote_path": "",
+      "marked_for_delete": false,
+      "overridden": false,
+      "category": "Environment",
+      "stateful": true,
+      "tcp_strict": true,
+      "locked": false,
+      "lock_modified_time": 0,
+      "scope": [
+        "ANY"
+      ],
+      "is_default": false
+    },
+    {
+      "logging_enabled": false,
+      "target_type": "DFW",
+      "resource_type": "SecurityPolicy",
+      "display_name": "Cloud Test DMZ",
+      "path": "/infra/domains/cgw/security-policies/Cloud_Test_DMZ",
+      "parent_path": "/infra/domains/cgw",
+      "remote_path": "",
+      "marked_for_delete": false,
+      "overridden": false,
+      "category": "Environment",
+      "stateful": true,
+      "tcp_strict": true,
+      "locked": false,
+      "lock_modified_time": 0,
+      "scope": [
+        "ANY"
+      ],
+      "is_default": false
+    },
+    {
+      "logging_enabled": false,
+      "target_type": "DFW",
+      "resource_type": "SecurityPolicy",
+      "display_name": "Cloud Test Trusted",
+      "path": "/infra/domains/cgw/security-policies/Cloud_Test_Trusted",
+      "parent_path": "/infra/domains/cgw",
+      "remote_path": "",
+      "marked_for_delete": false,
+      "overridden": false,
+      "category": "Environment",
+      "stateful": true,
+      "tcp_strict": true,
+      "locked": false,
+      "lock_modified_time": 0,
+      "scope": [
+        "ANY"
+      ],
+      "is_default": false
+    },
+    {
+      "logging_enabled": false,
+      "resource_type": "SecurityPolicy",
+      "display_name": "Deny Inbound",
+      "path": "/infra/domains/cgw/security-policies/Deny_Inbound",
+      "parent_path": "/infra/domains/cgw",
+      "remote_path": "",
+      "marked_for_delete": false,
+      "overridden": false,
+      "category": "Environment",
+      "stateful": true,
+      "tcp_strict": true,
+      "locked": false,
+      "lock_modified_time": 0,
+      "scope": [
+        "ANY"
+      ],
+      "is_default": false
+    },
+    {
+      "logging_enabled": false,
+      "resource_type": "SecurityPolicy",
+      "display_name": "Universal Shared Trusted",
+      "path": "/infra/domains/cgw/security-policies/c97c4360-1ae1-11eb-acf8-79e76d64b67b",
+      "parent_path": "/infra/domains/cgw",
+      "remote_path": "",
+      "marked_for_delete": false,
+      "overridden": false,
+      "category": "Application",
+      "stateful": true,
+      "locked": false,
+      "lock_modified_time": 0,
+      "scope": [
+        "ANY"
+      ],
+      "is_default": false
+    }
+  ],
+  "result_count": 15,
+  "sort_by": "precedence",
+  "sort_ascending": true
+}
