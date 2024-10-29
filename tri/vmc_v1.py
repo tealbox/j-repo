@@ -3,7 +3,7 @@ import os
 
 def login():
 ##    key = os.environ['oauthkey']
-    key = "kmOC_bLbTzs2-j8hoJYLXUysZvS7NYjhw-J4-uHpiB7F4Yo7o9LdW-nqNT-QXnM7"
+    key = "xxxxxxx"
     baseurl = 'https://console.cloud.vmware.com/csp/gateway'
     uri = '/am/api/auth/api-tokens/authorize'
     headers = {'Content-Type':'application/json'}
