@@ -44,7 +44,7 @@ class myVMC:
 
     def __init__(self, loginKey=None, debug=False):
 ##        self.loginKey = loginKey
-        self.loginKey = "kmOC_bLbTzs2-j8hoJYLXUysZvS7NYjhw-J4-uHpiB7F4Yo7o9LdW-nqNT-QXnM7"
+        self.loginKey = "xxxxxxxxxxxxxxxxx"
         self.s = requests.Session()
         self.baseUrl = 'https://console.cloud.vmware.com'
         self.s.verify = False
