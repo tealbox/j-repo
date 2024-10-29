@@ -1,0 +1,5 @@
+POST https://console.cloud.vmware.com/csp/gateway/am/api/auth/api-tokens/authorize
+x-www-form-urlencoded
+Body >> refresh_token: API Key
+
+Return Body: access_token >> set it as csp-auth-token for all requests later.
