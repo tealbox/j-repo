@@ -46,3 +46,54 @@ except Exception as e:
 
 # Special Login Handler: Netmiko’s CiscoWlcSSH class includes a special_login_handler method to manage the WLC’s login process, which may prompt for "User:" or "Password:" in certain OS versions
 
+from netmiko import ConnectHandler
+import logging
+
+# Enable logging for debugging
+logging.basicConfig(filename='netmiko_debug.log', level=logging.DEBUG)
+logger = logging.getLogger("netmiko")
+
+# Device connection details
+device = {
+    'device_type': 'cisco_ios',
+    'host': '192.168.1.1',
+    'username': 'admin',
+    'password': 'password',
+    'session_log': 'session_debug.log',  # Log file for session output
+    'verbose': True  # Enable verbose logging
+}
+
+try:
+    # Establish connection
+    with ConnectHandler(**device) as net_connect:
+        # Run a command
+        output = net_connect.send_command("show version")
+        print(output)
+except Exception as e:
+    print(f"Error: {e}")
+#######################################################
+# If you want to capture logs in memory (instead of a file) for debugging, use BufferedSessionLog:
+from netmiko import ConnectHandler
+from netmiko.session_log import BufferedSessionLog
+
+# Device connection details
+device = {
+    'device_type': 'cisco_ios',
+    'host': '192.168.1.1',
+    'username': 'admin',
+    'password': 'password',
+    'session_log': BufferedSessionLog(),  # In-memory buffer
+    'verbose': True
+}
+
+try:
+    with ConnectHandler(**device) as net_connect:
+        output = net_connect.send_command("show version")
+        print(output)
+        # Access buffered log
+        session_log_content = net_connect.session_log.getvalue()
+        print("Session Log Contents:")
+        print(session_log_content)
+except Exception as e:
+    print(f"Error: {e}")
+    
