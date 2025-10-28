@@ -1,0 +1,17 @@
+---
+- name: Gather vSwitch information from standalone ESXi host
+  hosts: esxi_hosts
+  gather_facts: false
+  tasks:
+    - name: Get vSwitch details
+      community.vmware.vmware_vswitch_info:
+        hostname: "{{ inventory_hostname }}"
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_password }}"
+        validate_certs: false # Set to true in production with proper certs
+      delegate_to: localhost # Run the module from the control machine
+      register: vswitch_info
+
+    - name: Display vSwitch information
+      debug:
+        var: vswitch_info.vswitches
