@@ -1,0 +1,55 @@
+Transfer vcf-9.0.1.0-offline-depot-metadata.zip to /nfs/vmware/vcf/nfs-mount
+Extract file.
+
+Copy all Binaries to /nfs/vmware/vcf/nfs-mount location and after metadata extraction and create directories and copy files to respective locations
+
+awk '/"name": "VCF"/ { last_vcf = NR } { lines[NR] = $0 } END { for (i = last_vcf + 1; i <= NR; i++) if (lines[i] ~ /"name": "/) print lines[i] }' PROD/metadata/manifest/v1/vcfManifest.json | awk -F'"' '/"name":/ {print $4}' | xargs -I{} mkdir -p "PROD/COMP/{}"
+
+ 
+
+
+
+Transfer vcf-download-tool-9.0.1.0.24962179.tar.gz to /nfs/vmware/vcf/nfs-mount
+
+Create Directory for lcm-tools in /opt/vmware/vcf/lcm/
+mkdir /opt/vmware/vcf/lcm/lcm-tools
+# tar -xvzf  /nfs/vmware/vcf/nfs-mount/vcf-download-tool-9.0.1.0.24962179.tar.gz
+
+cd /nfs/vmware/vcf/nfs-mount
+ cp VCF-SDDC-Manager-Appliance-9.0.1.0.24962180.ova /nfs/vmware/vcf/nfs-mount/
+ cp nsx-unified-appliance-9.0.1.0.24952114.ova PROD/COMP/NSX_T_MANAGER/
+ cp vmsp-vcfa-combined-9.0.1.0.24965341.tar PROD/COMP/VRA/
+ cp VCF-OPS-Lifecycle-Manager-Appliance-9.0.1.0.24960371.ova PROD/COMP/VRSLCM/
+ cp Operations-Cloud-Proxy-9.0.1.0.24960349.ova PROD/COMP/VCF_OPS_CLOUD_PROXY/
+ cp VMware-VCSA-all-9.0.1.0.24957454.iso PROD/COMP/VCENTER/
+ cp VMware-VMvisor-Installer-9.0.1.0.24957456.x86_64.iso  PROD/COMP/ESX_HOST/
+ cp Operations-Appliance-9.0.1.0.24960351.ova PROD/COMP/VROPS/
+ cp VCF-SDDC-Manager-Appliance-9.0.1.0.24962180.ova PROD/COMP/SDDC_MANAGER_VCF/
+ 
+ 
+ mv VCF-SDDC-Manager-Appliance*.ova /nfs/vmware/vcf/nfs-mount/
+ mv nsx-unified-appliance*.ova PROD/COMP/NSX_T_MANAGER/
+ mv vmsp-vcfa-combined*.tar PROD/COMP/VRA/
+ mv VCF-OPS-Lifecycle-Manager-Appliance*.ova PROD/COMP/VRSLCM/
+ mv Operations-Cloud-Proxy*.ova PROD/COMP/VCF_OPS_CLOUD_PROXY/
+ mv VMware-VCSA-all*.iso PROD/COMP/VCENTER/
+ mv VMware-VMvisor-Installer*.iso  PROD/COMP/ESX_HOST/
+ mv Operations-Appliance*.ova PROD/COMP/VROPS/
+ mv VCF-SDDC-Manager-Appliance*.ova PROD/COMP/SDDC_MANAGER_VCF/
+ 
+
+cd /opt/vmware/vcf/lcm/lcm-tools/bin
+hostnamectl 
+cd /v sddcmgr101
+
+root@sddcmgr131 [ /opt/vmware/vcf/lcm/lcm-tools/bin ]# bash vcf-download-tool binaries upload -d /nfs/vmware/vcf/nfs-mount -u admin@local --sddc-manager-fqdn sddcmgr101bash vcf-download-tool binaries upload -d /nfs/vmware/vcf/nfs-mount -u admin@local --sddc-manager-fqdn sddcmgr101
+*********Welcome to VMware Cloud Foundation Download Tool***********
+
+
+Note: All binaries uploaded to location: /nfs/vmware/vcf/nfs-mount/bundle
+
+root@sddcmgr101 [ ~ ]# find / -name VMware-VCSA-all-9.0.1.0.24957454.iso -print
+/nfs/vmware/vcf/nfs-mount/VMware-VCSA-all-9.0.1.0.24957454.iso
+/nfs/vmware/vcf/nfs-mount/bundle/7893ff57-6bbc-513c-aff8-ecf2fd60ef20/7893ff57-6bbc-513c-aff8-ecf2fd60ef20/VMware-VCSA-all-9.0.1.0.24957454.iso
+root@sddcmgr101 [ ~ ]#
+
