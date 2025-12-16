@@ -1,0 +1,8 @@
+function essh {
+        sshpass -f ~/.esxpass ssh -o "StrictHostKeyChecking no" root@$1
+}
+. "$HOME/.cargo/env"
+function pb {
+        /root/myesxi/bin/ansible-playbook $1
+}
+
