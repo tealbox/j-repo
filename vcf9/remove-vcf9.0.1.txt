@@ -1,0 +1,11 @@
+## Remove VCF9.0.1 componetents from Manifest.json file.
+https://knowledge.broadcom.com/external/article/416861
+https://vmnic.com/2025/10/08/greenfielding-vcf-9-0-0-0-management-domain-fails-with-nsx-install-image-error/
+sed -i -e '1707,2191d' -e '1706s/,$//' vcfManifestWithout901.json
+jq . vcfManifestWithout901.json | head -n 3
+
+
+
+https://bytestuffs.com/2025/02/23/vcf-password-management-a-deep-dive-into-password-lifecycle-management-for-vcf-environments/
+NSX Distributed DHCP (D-DHCP)
+
