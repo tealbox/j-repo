@@ -1,0 +1,19 @@
+#-------------------------------------------------------------------------------
+# Name:        caps on/off
+import ctypes
+from time import sleep
+def caps(toggle=1):
+    VK_CAPITAL = 0x14
+    ctypes.windll.user32.keybd_event(VK_CAPITAL, 0, 0, 0)
+    ctypes.windll.user32.keybd_event(VK_CAPITAL, 0, 0X0002, 0)
+    sleep(.1)
+    ctypes.windll.user32.keybd_event(VK_CAPITAL, 0, 0, 0)
+    ctypes.windll.user32.keybd_event(VK_CAPITAL, 0, 0X0002, 0)
+def main():
+    hllDll = ctypes.WinDLL ("User32.dll")
+    while True:
+        caps()
+        sleep(300)
+    pass
+if __name__ == '__main__':
+    main()
