@@ -1,0 +1,4 @@
+https://dl.pstmn.io/download/version/9.31.30/win64
+Postman-win64-9.31.30-Setup.exe
+
+https://community.postman.com/t/direct-download-link-for-9-x/29148
