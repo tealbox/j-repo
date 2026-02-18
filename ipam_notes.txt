@@ -1,0 +1,27 @@
+def GetAvailableNetworksAndSubnets(auth_params, ip_type):
+    logger = logging.getLogger(auth_params.get('logger_name', ''))
+    logger.info(f"Inside F[GetAvailableNetworksAndSubnets] auth_params: {auth_params}, ip_type: {ip_type}")
+    ret_data = [{'network': 'infoblox--ntec--10.252.20.0-24',
+      'v4_subnet': '10.252.20.0/24',
+      'v6_subnet': None},
+     {'network': 'infoblox--ntec--10.252.30.0-24',
+      'v4_subnet': '10.252.30.0/24',
+      'v6_subnet': None},
+     {'network': 'infoblox--ntec--10.252.40.0-24',
+      'v4_subnet': '10.252.40.0/24',
+      'v6_subnet': None},
+     {'network': 'infoblox--ntec--10.10.80.0-20',
+      'v4_subnet': '10.10.80.0/20',
+      'v6_subnet': None},
+     {'network': 'infoblox--ntec--10.10.32.0-24',
+      'v4_subnet': '10.10.32.0/24',
+      'v6_subnet': None},
+     {'network': 'infoblox--ntec--10.10.33.0-24',
+      'v4_subnet': '10.10.33.0/24',
+      'v6_subnet': None},
+     {'network': 'infoblox--ntec--10.10.34.0-24',
+      'v4_subnet': '10.10.34.0/24',
+      'v6_subnet': None}]
+
+    return ret_data
+
