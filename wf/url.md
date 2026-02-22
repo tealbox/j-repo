@@ -4,13 +4,13 @@ https://github.com/avinetworks/devops/blob/master/custom_ipam_dns
 
 Files location:
 
-`**Log files:**\
+**Log files:**
 /var/lib/avi/log/custom_ipam_script.log\
-/var/lib/avi/log/custom_dns_script.log\`
+/var/lib/avi/log/custom_dns_script.log\
 
 logger_name = "custom_ipam_script" & "custom_dns_script"
 
-`**Scripts location:**
+**Scripts location:**  
 
 /var/lib/avi/ipamdnsscripts/\
 -rw-r--r--  1 root root 57217 Feb 22 17:17 default_custom_ipam_script_infoblox.py\
