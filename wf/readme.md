@@ -2,9 +2,9 @@
 
 https://github.com/avinetworks/devops/blob/master/custom_ipam_dns  
 
-Files location:
+**Files location:**
 
-**Log files:**
+**Log files:**<br/>
 /var/lib/avi/log/custom_ipam_script.log\
 /var/lib/avi/log/custom_dns_script.log\
 
@@ -12,9 +12,9 @@ logger_name = "custom_ipam_script" & "custom_dns_script"
 
 **Scripts location:**  
 
-/var/lib/avi/ipamdnsscripts/\
+/var/lib/avi/ipamdnsscripts/<br/>
 -rw-r--r--  1 root root 57217 Feb 22 17:17 default_custom_ipam_script_infoblox.py\
--rw-r--r--  1 root root 59262 Feb 22 18:31 default_custom_dns_script_infoblox.py\`
+-rw-r--r--  1 root root 59262 Feb 22 18:31 default_custom_dns_script_infoblox.py\
 
 
 <img width="1694" height="646" alt="image" src="https://github.com/user-attachments/assets/73d245e3-feb5-4a3a-8dbc-f8f9d98719c6" />
