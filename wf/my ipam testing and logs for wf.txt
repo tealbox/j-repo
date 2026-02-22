@@ -1,0 +1,311 @@
+logger = logging.getLogger(auth_params.get('logger_name', ''))
+logger.info("Tao Inside F[TestLogin] auth_params[%s]", auth_params)
+logger.info("Tao Inside F[_verify_required_fields_in_auth_params] auth_params[%s]", auth_params)
+
+logger.info("Return from F[TestLogin] auth_params[%s]", auth_params)
+
+
+logger.info("Tao Inside F[GetAvailableNetworksAndSubnets] auth_params[%s] and ip_type[%s]", auth_params, ip_type)
+logger.info("Tao Return F[GetAvailableNetworksAndSubnets] subnet_list[%s]", subnet_list)
+
+
+
+logger.info("Tao Inside F[CreateIpamRecord] auth_params[%s] and record_info[%s]", auth_params, record_info)
+logger.info("Tao Return F[CreateIpamRecord] alloc_info[%s]", alloc_info)
+
+
+logger.info("Tao Inside F[DeleteIpamRecord] auth_params[%s] and record_info[%s]", auth_params, record_info)
+logger.info("Tao Return F[DeleteIpamRecord] alloc_info[%s]", alloc_info)
+DeleteIpamRecord
+
+
+
+For DNS:
+    logger = logging.getLogger(auth_params.get('logger_name', ''))
+    logger.info("Tao Inside DNS F[_verify_required_fields_in_auth_params] auth_params: [%s]", auth_params)
+
+
+root@192-168-1-125:/var/lib/avi/log# ls -ltra custom_*
+-rw-r--r-- 1 root root 49112 Feb 22 18:34 custom_ipam_script.log
+-rw-r--r-- 1 root root  3031 Feb 22 18:34 custom_dns_script.log
+root@192-168-1-125:/var/lib/avi/log#
+
+
+Case n:
+incoming Parameters:
+    auth_params:
+
+Return:
+    subnet_list:
+    
+observation:
+    
+script name: /var/lib/avi/ipamdnsscripts/default_custom_ipam_script_infoblox.py
+/var/lib/avi/log/portal-webapp.log
+/var/lib/avi/log/custom_ipam_script.log
+##################  GetAvailableNetworksAndSubnets ######################
+Case 1:
+incoming Parameters:
+    auth_params:
+        {'server': '192.168.1.160', 
+        'username': 'admin', 
+        'password': 'infoblox', 
+        'wapi_version': 'v2.13.8', 
+        'dns_view': 'default', 
+        'network_view': 'default', 
+        'logger_name': 'custom_ipam_script', 
+        'cloud_uuid': ['cloud-7d535a08-2e50-40b7-b897-9ccf5bc6cf8d'], 
+        'auto_allocate_only': ['true'], 
+        'preferred_nw_type': ['V4_ONLY'], 
+        'vrf_context_uuid': ['vrfcontext-3c4a7fb6-d3a5-459d-9556-7a3a5728b0ad'], 
+        'page_size': ['12'], 
+        'page': ['1'], 
+        'include_name': ['true']}
+
+    ip_type == [V4_V6]
+
+
+Return:
+subnet_list: a list of dict (network, v4_subnet, v6_subnet: None)
+    [{'network': 'infoblox--default--30.30.10.0-24', 'v4_subnet': '30.30.10.0/24', 'v6_subnet': None}]
+
+
+################################# end case 1 ##########################
+
+Case 2:
+incoming Parameters:
+    auth_params:
+        {'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 
+        'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script', 
+        'cloud_uuid': ['cloud-7d535a08-2e50-40b7-b897-9ccf5bc6cf8d'], 'auto_allocate_only': ['true'], 
+        'preferred_nw_type': ['V4_ONLY'], 'vrf_context_uuid': ['vrfcontext-3c4a7fb6-d3a5-459d-9556-7a3a5728b0ad'], 
+        'page_size': ['12'], 'page': ['1'], 'include_name': ['true']}]
+    ip_type: V4_V6
+
+Return:
+    subnet_list:
+    [{'network': 'infoblox--default--30.30.10.0-24', 'v4_subnet': '30.30.10.0/24', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.4-30', 'v4_subnet': '30.30.11.4/30', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.8-30', 'v4_subnet': '30.30.11.8/30', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.12-30', 'v4_subnet': '30.30.11.12/30', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.32-28', 'v4_subnet': '30.30.11.32/28', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.48-28', 'v4_subnet': '30.30.11.48/28', 'v6_subnet': None}]
+
+##################  CreateIpamRecord ######################
+auth_params: same
+
+record_info:
+{ 'id': 'vsvip-804909af-c029-431b-a028-6c399ef12d68', 
+'fqdns': [], 
+'preferred_ip': None, 
+'preferred_ip6': None, 
+'allocation_type': 'V4_ONLY', 
+'nw_and_subnet_list': [('infoblox--default--30.30.10.0-24', '30.30.10.0/24', None)]}
+
+Return:
+alloc_info:
+{'v4_ip': '30.30.10.9', 'v4_subnet': '30.30.10.0/24'}
+################################# end case 2 ##########################
+
+
+Case 3:
+observation
+Parameters Passed:
+    auth_params:{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script'}
+    record_info:{'id': 'vsvip-b39a80df-8714-45e9-993a-25cea4802df0', 'fqdns': [], 'preferred_ip': None, 'preferred_ip6': None, 'allocation_type': 'V4_ONLY', 'nw_and_subnet_list': [('infoblox--default--30.30.11.12-30', '30.30.11.12/30', None)]}
+
+Return [Section 2]: using section 2
+alloc_info:
+{'v4_ip': '30.30.11.13', 'v4_subnet': '30.30.11.12/30'}
+
+observation:
+    auth_params for GetAvailableNetworksAndSubnets and CreateIpamRecord are differnet no cloud_uuid, vrf_context_uuid etc...
+    
+    
+##################  CreateIpamRecord ######################
+
+auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script'}] and record_info[{'id': 'vsvip-6ac0e43d-d0c9-4fe2-b16e-29c949e12804', 'fqdns': []}]
+
+Case n:
+Parameters Passed:
+    auth_params: {'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script'}
+    record_info: {'id': 'vsvip-6ac0e43d-d0c9-4fe2-b16e-29c949e12804', 'fqdns': []}
+Return:
+    subnet_list:
+    
+observation:
+################################# end case 3 ##########################
+
+
+##################  _verify_required_fields_in_auth_params ######################
+
+_verify_required_fields_in_auth_params
+auth_params: {'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_dns_script', 
+    'dynamic_name': 'cas_config_wf'}
+
+##################  CreateOrUpdateDnsRecords ######################
+Case 4:
+Parameters Passed:
+    auth_params:
+    auth_params: [{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_dns_script', 'dynamic_name': 'cas_config_wf'}]
+    new_records_info: {'ips': {'v4_ips': ['30.30.10.11'], 'v6_ips': []}, 'dns_info': {'walker_creek_v11.cas.local': {'ttl': 60, 'type': 'DNS_RECORD_A', 'cname': '', 'metadata': ''}}}
+    old_records_info: [None]
+
+Return:
+    subnet_list:
+    
+observation:
+    
+#########  CreateIpamRecord
+auth_params: {'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script'}
+record_info: {'id': 'vsvip-5637896c-199c-4dc4-8e57-0862a532eb99', 'fqdns': ['walker_creek_v11.cas.local'], 'preferred_ip': None, 'preferred_ip6': None, 'allocation_type': 'V4_ONLY', 'nw_and_subnet_list': [('infoblox--default--30.30.10.0-24', '30.30.10.0/24', None)]}
+
+Return:
+    alloc_info: {'v4_ip': '30.30.10.11', 'v4_subnet': '30.30.10.0/24'}
+################################# end case 4 ##########################
+
+
+
+
+
+
+##################  DeleteDnsRecords ######################
+Case 5:
+Parameters Passed:
+    auth_params: {'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_dns_script', 'dynamic_name': 'cas_config_wf'}
+    records_info: {'ips': {'v4_ips': ['30.30.10.11'], 'v6_ips': []}, 'dns_info': {'walker_creek_v11.cas.local': {'ttl': 60, 'type': 'DNS_RECORD_A', 'cname': '', 'metadata': ''}}}
+
+Return:
+    subnet_list:
+    
+observation:
+    
+#########  DeleteIpamRecord
+Case 5:
+auth_params: {'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script'}
+record_info: {'id': 'vsvip-5637896c-199c-4dc4-8e57-0862a532eb99', 'fqdns': ['walker_creek_v11.cas.local']}
+
+
+[2026-02-22 18:51:41,706] INFO [custom_dns_script:941] Tao Inside DNS F[DeleteDnsRecords] records_info: [{'ips': {'v4_ips': ['30.30.10.11'], 'v6_ips': []}, 'dns_info': {'walker_creek_v11.cas.local': {'ttl': 60, 'type': 'DNS_RECORD_A', 'cname': '', 'metadata': ''}}}], auth_params: [{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_dns_script', 'dynamic_name': 'cas_config_wf'}]
+
+[2026-02-22 18:51:37,295] INFO [custom_ipam_script:701] Tao Inside F[DeleteIpamRecord] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script'}] and record_info[{'id': 'vsvip-5637896c-199c-4dc4-8e57-0862a532eb99', 'fqdns': ['walker_creek_v11.cas.local']}
+
+################################# end case 5 ##########################
+
+
+root@192-168-1-125:/var/lib/avi/log# custom_ipam_script.log
+[2026-02-22 18:34:18,119] INFO [custom_ipam_script:71] Inside F[_verify_required_fields_in_auth_params] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script', 'cloud_uuid': ['cloud-7d535a08-2e50-40b7-b897-9ccf5bc6cf8d'], 'auto_allocate_only': ['true'], 'preferred_nw_type': ['V4_ONLY'], 'vrf_context_uuid': ['vrfcontext-3c4a7fb6-d3a5-459d-9556-7a3a5728b0ad'], 'page_size': ['12'], 'page': ['1'], 'include_name': ['true']}]
+[2026-02-22 18:34:18,119] INFO [custom_ipam_script:419] Inside F[GetAvailableNetworksAndSubnets] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': '<sensitive>', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script', 'cloud_uuid': ['cloud-7d535a08-2e50-40b7-b897-9ccf5bc6cf8d'], 'auto_allocate_only': ['true'], 'preferred_nw_type': ['V4_ONLY'], 'vrf_context_uuid': ['vrfcontext-3c4a7fb6-d3a5-459d-9556-7a3a5728b0ad'], 'page_size': ['12'], 'page': ['1'], 'include_name': ['true']}] ip_type[V4_V6]
+[2026-02-22 18:34:18,119] INFO [custom_ipam_script:420] Tao Inside F[GetAvailableNetworksAndSubnets] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script', 'cloud_uuid': ['cloud-7d535a08-2e50-40b7-b897-9ccf5bc6cf8d'], 'auto_allocate_only': ['true'], 'preferred_nw_type': ['V4_ONLY'], 'vrf_context_uuid': ['vrfcontext-3c4a7fb6-d3a5-459d-9556-7a3a5728b0ad'], 'page_size': ['12'], 'page': ['1'], 'include_name': ['true']}] and ip_type[V4_V6]
+[2026-02-22 18:34:18,143] INFO [custom_ipam_script:245] F[_get_api_paginated] req[https://192.168.1.160/wapi/v2.13.8/network?network_view=default&_paging=1&_max_results=1000&_return_as_object=1] status_code[200]
+[2026-02-22 18:34:18,159] INFO [custom_ipam_script:245] F[_get_api_paginated] req[https://192.168.1.160/wapi/v2.13.8/ipv6network?network_view=default&_paging=1&_max_results=1000&_return_as_object=1] status_code[200]
+[2026-02-22 18:34:18,159] INFO [custom_ipam_script:441] Tao Return F[GetAvailableNetworksAndSubnets] subnet_list[[{'network': 'infoblox--default--30.30.10.0-24', 'v4_subnet': '30.30.10.0/24', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.4-30', 'v4_subnet': '30.30.11.4/30', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.8-30', 'v4_subnet': '30.30.11.8/30', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.12-30', 'v4_subnet': '30.30.11.12/30', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.32-28', 'v4_subnet': '30.30.11.32/28', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.48-28', 'v4_subnet': '30.30.11.48/28', 'v6_subnet': None}]]
+[2026-02-22 18:34:22,558] INFO [custom_ipam_script:71] Inside F[_verify_required_fields_in_auth_params] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script', 'uuid': ['infoblox--default--30.30.10.0-24'], 'cloud_uuid': ['cloud-7d535a08-2e50-40b7-b897-9ccf5bc6cf8d'], 'auto_allocate_only': ['true']}]
+[2026-02-22 18:34:22,558] INFO [custom_ipam_script:419] Inside F[GetAvailableNetworksAndSubnets] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': '<sensitive>', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script', 'uuid': ['infoblox--default--30.30.10.0-24'], 'cloud_uuid': ['cloud-7d535a08-2e50-40b7-b897-9ccf5bc6cf8d'], 'auto_allocate_only': ['true']}] ip_type[V4_V6]
+[2026-02-22 18:34:22,558] INFO [custom_ipam_script:420] Tao Inside F[GetAvailableNetworksAndSubnets] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script', 'uuid': ['infoblox--default--30.30.10.0-24'], 'cloud_uuid': ['cloud-7d535a08-2e50-40b7-b897-9ccf5bc6cf8d'], 'auto_allocate_only': ['true']}] and ip_type[V4_V6]
+[2026-02-22 18:34:22,589] INFO [custom_ipam_script:245] F[_get_api_paginated] req[https://192.168.1.160/wapi/v2.13.8/network?network_view=default&_paging=1&_max_results=1000&_return_as_object=1] status_code[200]
+[2026-02-22 18:34:22,606] INFO [custom_ipam_script:245] F[_get_api_paginated] req[https://192.168.1.160/wapi/v2.13.8/ipv6network?network_view=default&_paging=1&_max_results=1000&_return_as_object=1] status_code[200]
+[2026-02-22 18:34:22,606] INFO [custom_ipam_script:441] Tao Return F[GetAvailableNetworksAndSubnets] subnet_list[[{'network': 'infoblox--default--30.30.10.0-24', 'v4_subnet': '30.30.10.0/24', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.4-30', 'v4_subnet': '30.30.11.4/30', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.8-30', 'v4_subnet': '30.30.11.8/30', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.12-30', 'v4_subnet': '30.30.11.12/30', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.32-28', 'v4_subnet': '30.30.11.32/28', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.48-28', 'v4_subnet': '30.30.11.48/28', 'v6_subnet': None}]]
+[2026-02-22 18:34:32,722] INFO [custom_ipam_script:71] Inside F[_verify_required_fields_in_auth_params] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script'}]
+[2026-02-22 18:34:32,723] INFO [custom_ipam_script:480] Inside F[CreateIpamRecord] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': '<sensitive>', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script'}] record_info[{'id': 'vsvip-5637896c-199c-4dc4-8e57-0862a532eb99', 'fqdns': ['walker_creek_v11.cas.local'], 'preferred_ip': None, 'preferred_ip6': None, 'allocation_type': 'V4_ONLY', 'nw_and_subnet_list': [('infoblox--default--30.30.10.0-24', '30.30.10.0/24', None)]}]
+[2026-02-22 18:34:32,723] INFO [custom_ipam_script:481] Tao Inside F[CreateIpamRecord] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script'}] and record_info[{'id': 'vsvip-5637896c-199c-4dc4-8e57-0862a532eb99', 'fqdns': ['walker_creek_v11.cas.local'], 'preferred_ip': None, 'preferred_ip6': None, 'allocation_type': 'V4_ONLY', 'nw_and_subnet_list': [('infoblox--default--30.30.10.0-24', '30.30.10.0/24', None)]}]
+[2026-02-22 18:34:32,915] INFO [custom_ipam_script:651] F[CreateIpamRecord] req[https://192.168.1.160/wapi/v2.13.8/record:host?_return_fields=ipv4addrs,ipv6addrs {"name": "vsvip-5637896c-199c-4dc4-8e57-0862a532eb99", "view": "default", "configure_for_dns": false, "ipv4addrs": [{"ipv4addr": "func:nextavailableip:30.30.10.0/24,default"}]}] status_code[201]
+[2026-02-22 18:34:32,915] INFO [custom_ipam_script:662] Tao Return [Section 2] F[CreateIpamRecord] alloc_info[{'v4_ip': '30.30.10.11', 'v4_subnet': '30.30.10.0/24'}]
+root@192-168-1-125:/var/lib/avi/log#
+
+
+
+
+
+
+############################################################
+GetAvailableNetworksAndSubnets
+root@192-168-1-125:/var/lib/avi/log/# grep -i tao *
+custom_ipam_script.log:[2026-02-22 17:18:19,476] INFO [custom_ipam_script:420] Tao Inside F[GetAvailableNetworksAndSubnets] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script', 'cloud_uuid': ['cloud-7d535a08-2e50-40b7-b897-9ccf5bc6cf8d'], 'auto_allocate_only': ['true'], 'preferred_nw_type': ['V4_ONLY'], 'vrf_context_uuid': ['vrfcontext-3c4a7fb6-d3a5-459d-9556-7a3a5728b0ad'], 'page_size': ['12'], 'page': ['1'], 'include_name': ['true']}] and ip_type[V4_V6]
+custom_ipam_script.log:[2026-02-22 17:18:19,539] INFO [custom_ipam_script:441] Tao Return F[GetAvailableNetworksAndSubnets] subnet_list[[{'network': 'infoblox--default--30.30.10.0-24', 'v4_subnet': '30.30.10.0/24', 'v6_subnet': None}]]
+custom_ipam_script.log:[2026-02-22 17:18:23,681] INFO [custom_ipam_script:420] Tao Inside F[GetAvailableNetworksAndSubnets] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script', 'uuid': ['infoblox--default--30.30.10.0-24'], 'cloud_uuid': ['cloud-7d535a08-2e50-40b7-b897-9ccf5bc6cf8d'], 'auto_allocate_only': ['true']}] and ip_type[V4_V6]
+custom_ipam_script.log:[2026-02-22 17:18:23,732] INFO [custom_ipam_script:441] Tao Return F[GetAvailableNetworksAndSubnets] subnet_list[[{'network': 'infoblox--default--30.30.10.0-24', 'v4_subnet': '30.30.10.0/24', 'v6_subnet': None}]]
+
+CreateIpamRecord
+custom_ipam_script.log:[2026-02-22 17:18:36,876] INFO [custom_ipam_script:481] Tao Inside F[CreateIpamRecord] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script'}] and record_info[{'id': 'vsvip-804909af-c029-431b-a028-6c399ef12d68', 'fqdns': [], 'preferred_ip': None, 'preferred_ip6': None, 'allocation_type': 'V4_ONLY', 'nw_and_subnet_list': [('infoblox--default--30.30.10.0-24', '30.30.10.0/24', None)]}]
+custom_ipam_script.log:[2026-02-22 17:18:36,976] INFO [custom_ipam_script:662] Tao Return [Section 2] F[CreateIpamRecord] alloc_info[{'v4_ip': '30.30.10.9', 'v4_subnet': '30.30.10.0/24'}]
+grep: elasticsearch: Is a directory
+grep: glog: Is a directory
+
+
+portal-webapp.log:[2026-02-22 17:18:19,814] INFO [cs_container.executeScript:170] {'ExitCode': 0, 'stdout': "<script_log>[2026-02-22 17:18:19,475] INFO [custom_ipam_script:71] Inside F[_verify_required_fields_in_auth_params] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script', 'cloud_uuid': ['cloud-7d535a08-2e50-40b7-b897-9ccf5bc6cf8d'], 'auto_allocate_only': ['true'], 'preferred_nw_type': ['V4_ONLY'], 'vrf_context_uuid': ['vrfcontext-3c4a7fb6-d3a5-459d-9556-7a3a5728b0ad'], 'page_size': ['12'], 'page': ['1'], 'include_name': ['true']}]<script_log>\n<script_log>[2026-02-22 17:18:19,476] INFO [custom_ipam_script:419] Inside F[GetAvailableNetworksAndSubnets] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': '<sensitive>', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script', 'cloud_uuid': ['cloud-7d535a08-2e50-40b7-b897-9ccf5bc6cf8d'], 'auto_allocate_only': ['true'], 'preferred_nw_type': ['V4_ONLY'], 'vrf_context_uuid': ['vrfcontext-3c4a7fb6-d3a5-459d-9556-7a3a5728b0ad'], 'page_size': ['12'], 'page': ['1'], 'include_name': ['true']}] ip_type[V4_V6]<script_log>\n<script_log>[2026-02-22 17:18:19,476] INFO [custom_ipam_script:420] Tao Inside F[GetAvailableNetworksAndSubnets] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script', 'cloud_uuid': ['cloud-7d535a08-2e50-40b7-b897-9ccf5bc6cf8d'], 'auto_allocate_only': ['true'], 'preferred_nw_type': ['V4_ONLY'], 'vrf_context_uuid': ['vrfcontext-3c4a7fb6-d3a5-459d-9556-7a3a5728b0ad'], 'page_size': ['12'], 'page': ['1'], 'include_name': ['true']}] and ip_type[V4_V6]<script_log>\n<script_log>[2026-02-22 17:18:19,506] INFO [custom_ipam_script:245] F[_get_api_paginated] req[https://192.168.1.160/wapi/v2.13.8/network?network_view=default&_paging=1&_max_results=1000&_return_as_object=1] status_code[200]<script_log>\n<script_log>[2026-02-22 17:18:19,539] INFO [custom_ipam_script:245] F[_get_api_paginated] req[https://192.168.1.160/wapi/v2.13.8/ipv6network?network_view=default&_paging=1&_max_results=1000&_return_as_object=1] status_code[200]<script_log>\n<script_log>[2026-02-22 17:18:19,539] INFO [custom_ipam_script:441] Tao Return F[GetAvailableNetworksAndSubnets] subnet_list[[{'network': 'infoblox--default--30.30.10.0-24', 'v4_subnet': '30.30.10.0/24', 'v6_subnet': None}]]<script_log>\n<output>[{'network': 'infoblox--default--30.30.10.0-24', 'v4_subnet': '30.30.10.0/24', 'v6_subnet': None}]<output>\n", 'stderr': '/usr/local/lib/python3.8/dist-packages/urllib3/connectionpool.py:846: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings\n  warnings.warn((\n/usr/local/lib/python3.8/dist-packages/urllib3/connectionpool.py:846: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings\n  warnings.warn((\n'}
+portal-webapp.log:[2026-02-22 17:18:24,022] INFO [cs_container.executeScript:170] {'ExitCode': 0, 'stdout': "<script_log>[2026-02-22 17:18:23,680] INFO [custom_ipam_script:71] Inside F[_verify_required_fields_in_auth_params] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script', 'uuid': ['infoblox--default--30.30.10.0-24'], 'cloud_uuid': ['cloud-7d535a08-2e50-40b7-b897-9ccf5bc6cf8d'], 'auto_allocate_only': ['true']}]<script_log>\n<script_log>[2026-02-22 17:18:23,681] INFO [custom_ipam_script:419] Inside F[GetAvailableNetworksAndSubnets] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': '<sensitive>', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script', 'uuid': ['infoblox--default--30.30.10.0-24'], 'cloud_uuid': ['cloud-7d535a08-2e50-40b7-b897-9ccf5bc6cf8d'], 'auto_allocate_only': ['true']}] ip_type[V4_V6]<script_log>\n<script_log>[2026-02-22 17:18:23,681] INFO [custom_ipam_script:420] Tao Inside F[GetAvailableNetworksAndSubnets] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script', 'uuid': ['infoblox--default--30.30.10.0-24'], 'cloud_uuid': ['cloud-7d535a08-2e50-40b7-b897-9ccf5bc6cf8d'], 'auto_allocate_only': ['true']}] and ip_type[V4_V6]<script_log>\n<script_log>[2026-02-22 17:18:23,708] INFO [custom_ipam_script:245] F[_get_api_paginated] req[https://192.168.1.160/wapi/v2.13.8/network?network_view=default&_paging=1&_max_results=1000&_return_as_object=1] status_code[200]<script_log>\n<script_log>[2026-02-22 17:18:23,731] INFO [custom_ipam_script:245] F[_get_api_paginated] req[https://192.168.1.160/wapi/v2.13.8/ipv6network?network_view=default&_paging=1&_max_results=1000&_return_as_object=1] status_code[200]<script_log>\n<script_log>[2026-02-22 17:18:23,732] INFO [custom_ipam_script:441] Tao Return F[GetAvailableNetworksAndSubnets] subnet_list[[{'network': 'infoblox--default--30.30.10.0-24', 'v4_subnet': '30.30.10.0/24', 'v6_subnet': None}]]<script_log>\n<output>[{'network': 'infoblox--default--30.30.10.0-24', 'v4_subnet': '30.30.10.0/24', 'v6_subnet': None}]<output>\n", 'stderr': '/usr/local/lib/python3.8/dist-packages/urllib3/connectionpool.py:846: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings\n  warnings.warn((\n/usr/local/lib/python3.8/dist-packages/urllib3/connectionpool.py:846: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings\n  warnings.warn((\n'}
+portal-webapp.log:[2026-02-22 17:18:37,236] INFO [cs_container.executeScript:170] {'ExitCode': 0, 'stdout': '<script_log>[2026-02-22 17:18:36,876] INFO [custom_ipam_script:71] Inside F[_verify_required_fields_in_auth_params] auth_params[{\'server\': \'192.168.1.160\', \'username\': \'admin\', \'password\': \'infoblox\', \'wapi_version\': \'v2.13.8\', \'dns_view\': \'default\', \'network_view\': \'default\', \'logger_name\': \'custom_ipam_script\'}]<script_log>\n<script_log>[2026-02-22 17:18:36,876] INFO [custom_ipam_script:480] Inside F[CreateIpamRecord] auth_params[{\'server\': \'192.168.1.160\', \'username\': \'admin\', \'password\': \'<sensitive>\', \'wapi_version\': \'v2.13.8\', \'dns_view\': \'default\', \'network_view\': \'default\', \'logger_name\': \'custom_ipam_script\'}] record_info[{\'id\': \'vsvip-804909af-c029-431b-a028-6c399ef12d68\', \'fqdns\': [], \'preferred_ip\': None, \'preferred_ip6\': None, \'allocation_type\': \'V4_ONLY\', \'nw_and_subnet_list\': [(\'infoblox--default--30.30.10.0-24\', \'30.30.10.0/24\', None)]}]<script_log>\n<script_log>[2026-02-22 17:18:36,876] INFO [custom_ipam_script:481] Tao Inside F[CreateIpamRecord] auth_params[{\'server\': \'192.168.1.160\', \'username\': \'admin\', \'password\': \'infoblox\', \'wapi_version\': \'v2.13.8\', \'dns_view\': \'default\', \'network_view\': \'default\', \'logger_name\': \'custom_ipam_script\'}] and record_info[{\'id\': \'vsvip-804909af-c029-431b-a028-6c399ef12d68\', \'fqdns\': [], \'preferred_ip\': None, \'preferred_ip6\': None, \'allocation_type\': \'V4_ONLY\', \'nw_and_subnet_list\': [(\'infoblox--default--30.30.10.0-24\', \'30.30.10.0/24\', None)]}]<script_log>\n<script_log>[2026-02-22 17:18:36,976] INFO [custom_ipam_script:651] F[CreateIpamRecord] req[https://192.168.1.160/wapi/v2.13.8/record:host?_return_fields=ipv4addrs,ipv6addrs {"name": "vsvip-804909af-c029-431b-a028-6c399ef12d68", "view": "default", "configure_for_dns": false, "ipv4addrs": [{"ipv4addr": "func:nextavailableip:30.30.10.0/24,default"}]}] status_code[201]<script_log>\n<script_log>[2026-02-22 17:18:36,976] INFO [custom_ipam_script:662] Tao Return [Section 2] F[CreateIpamRecord] alloc_info[{\'v4_ip\': \'30.30.10.9\', \'v4_subnet\': \'30.30.10.0/24\'}]<script_log>\n<output>{\'v4_ip\': \'30.30.10.9\', \'v4_subnet\': \'30.30.10.0/24\'}<output>\n', 'stderr': '/usr/local/lib/python3.8/dist-packages/urllib3/connectionpool.py:846: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings\n  warnings.warn((\n'}
+Binary file portal-webapp.log.1.gz matches
+root@192-168-1-125:/var/lib/avi/log#
+
+
+Case 2:
+root@192-168-1-125:/var/lib/avi/log# grep -i tao custom_ipam_script.log
+[2026-02-22 17:31:58,499] INFO [custom_ipam_script:420] Tao Inside F[GetAvailableNetworksAndSubnets] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script', 'cloud_uuid': ['cloud-7d535a08-2e50-40b7-b897-9ccf5bc6cf8d'], 'auto_allocate_only': ['true'], 'preferred_nw_type': ['V4_ONLY'], 'vrf_context_uuid': ['vrfcontext-3c4a7fb6-d3a5-459d-9556-7a3a5728b0ad'], 'page_size': ['12'], 'page': ['1'], 'include_name': ['true']}] and ip_type[V4_V6]
+[2026-02-22 17:31:58,589] INFO [custom_ipam_script:441] Tao Return F[GetAvailableNetworksAndSubnets] subnet_list[[{'network': 'infoblox--default--30.30.10.0-24', 'v4_subnet': '30.30.10.0/24', 'v6_subnet': None}]]
+[2026-02-22 17:32:02,592] INFO [custom_ipam_script:420] Tao Inside F[GetAvailableNetworksAndSubnets] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script', 'uuid': ['infoblox--default--30.30.10.0-24'], 'cloud_uuid': ['cloud-7d535a08-2e50-40b7-b897-9ccf5bc6cf8d'], 'auto_allocate_only': ['true']}] and ip_type[V4_V6]
+[2026-02-22 17:32:02,637] INFO [custom_ipam_script:441] Tao Return F[GetAvailableNetworksAndSubnets] subnet_list[[{'network': 'infoblox--default--30.30.10.0-24', 'v4_subnet': '30.30.10.0/24', 'v6_subnet': None}]]
+[2026-02-22 17:32:17,566] INFO [custom_ipam_script:481] Tao Inside F[CreateIpamRecord] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script'}] and record_info[{'id': 'vsvip-6ac0e43d-d0c9-4fe2-b16e-29c949e12804', 'fqdns': [], 'preferred_ip': None, 'preferred_ip6': None, 'allocation_type': 'V4_ONLY', 'nw_and_subnet_list': [('infoblox--default--30.30.10.0-24', '30.30.10.0/24', None)]}]
+[2026-02-22 17:32:17,633] INFO [custom_ipam_script:662] Tao Return [Section 2] F[CreateIpamRecord] alloc_info[{'v4_ip': '30.30.10.10', 'v4_subnet': '30.30.10.0/24'}]
+[2026-02-22 17:39:26,983] INFO [custom_ipam_script:420] Tao Inside F[GetAvailableNetworksAndSubnets] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script', 'cloud_uuid': ['cloud-7d535a08-2e50-40b7-b897-9ccf5bc6cf8d'], 'auto_allocate_only': ['true'], 'preferred_nw_type': ['V4_ONLY'], 'vrf_context_uuid': ['vrfcontext-3c4a7fb6-d3a5-459d-9556-7a3a5728b0ad'], 'page_size': ['12'], 'page': ['1'], 'include_name': ['true']}] and ip_type[V4_V6]
+[2026-02-22 17:39:27,053] INFO [custom_ipam_script:441] Tao Return F[GetAvailableNetworksAndSubnets] subnet_list[[{'network': 'infoblox--default--30.30.10.0-24', 'v4_subnet': '30.30.10.0/24', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.4-30', 'v4_subnet': '30.30.11.4/30', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.8-30', 'v4_subnet': '30.30.11.8/30', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.12-30', 'v4_subnet': '30.30.11.12/30', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.32-28', 'v4_subnet': '30.30.11.32/28', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.48-28', 'v4_subnet': '30.30.11.48/28', 'v6_subnet': None}]]
+[2026-02-22 17:39:36,323] INFO [custom_ipam_script:420] Tao Inside F[GetAvailableNetworksAndSubnets] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script', 'uuid': ['infoblox--default--30.30.11.12-30'], 'cloud_uuid': ['cloud-7d535a08-2e50-40b7-b897-9ccf5bc6cf8d'], 'auto_allocate_only': ['true']}] and ip_type[V4_V6]
+[2026-02-22 17:39:36,368] INFO [custom_ipam_script:441] Tao Return F[GetAvailableNetworksAndSubnets] subnet_list[[{'network': 'infoblox--default--30.30.10.0-24', 'v4_subnet': '30.30.10.0/24', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.4-30', 'v4_subnet': '30.30.11.4/30', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.8-30', 'v4_subnet': '30.30.11.8/30', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.12-30', 'v4_subnet': '30.30.11.12/30', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.32-28', 'v4_subnet': '30.30.11.32/28', 'v6_subnet': None}, {'network': 'infoblox--default--30.30.11.48-28', 'v4_subnet': '30.30.11.48/28', 'v6_subnet': None}]]
+[2026-02-22 17:39:45,987] INFO [custom_ipam_script:481] Tao Inside F[CreateIpamRecord] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script'}] and record_info[{'id': 'vsvip-b39a80df-8714-45e9-993a-25cea4802df0', 'fqdns': [], 'preferred_ip': None, 'preferred_ip6': None, 'allocation_type': 'V4_ONLY', 'nw_and_subnet_list': [('infoblox--default--30.30.11.12-30', '30.30.11.12/30', None)]}]
+[2026-02-22 17:39:46,078] INFO [custom_ipam_script:662] Tao Return [Section 2] F[CreateIpamRecord] alloc_info[{'v4_ip': '30.30.11.13', 'v4_subnet': '30.30.11.12/30'}]
+root@192-168-1-125:/var/lib/avi/log#
+
+
+Case 3:
+[2026-02-22 17:53:49,153] INFO [custom_ipam_script:701] Tao Inside F[DeleteIpamRecord] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script'}] and record_info[{'id': 'vsvip-6ac0e43d-d0c9-4fe2-b16e-29c949e12804', 'fqdns': []}]
+
+
+
+
+
+Case 4:
+Using DNS
+
+root@192-168-1-125:/var/lib/avi/log# more custom_dns_script.log
+[2026-02-13 03:13:32,108] INFO [custom_dns_script:166] Inside fake DNS F[TestLogin] auth_params: {'username': 'k198528', 'password': 'VMware1!', 'server': '192.168.1.160', 'logger_name': 'custom_dns_script', 'cloud_uuid': ['cloud-7ff26519-0e26-4c9c-90da-95609237b672']}
+[2026-02-22 18:34:36,204] INFO [custom_dns_script:84] Tao Inside DNS F[_verify_required_fields_in_auth_params] auth_params: [{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_dns_script', 'dynamic_name': 'cas_config_wf'}]
+[2026-02-22 18:34:36,205] INFO [custom_dns_script:976] new_records_info[{'ips': {'v4_ips': ['30.30.10.11'], 'v6_ips': []}, 'dns_info': {'walker_creek_v11.cas.local': {'ttl': 60, 'type': 'DNS_RECORD_A', 'cname': '', 'metadata': ''}}}], old_records_info[None], auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': '<sensitive>', 'wapi_version':
+'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_dns_script', 'dynamic_name': 'cas_config_wf'}]
+[2026-02-22 18:34:36,205] INFO [custom_dns_script:978] Tao Inside DNS F[CreateOrUpdateDnsRecords] auth_params: [{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_dns_script', 'dynamic_name': 'cas_config_wf'}], new_records_info: [{'ips': {'v
+4_ips': ['30.30.10.11'], 'v6_ips': []}, 'dns_info': {'walker_creek_v11.cas.local': {'ttl': 60, 'type': 'DNS_RECORD_A', 'cname': '', 'metadata': ''}}}], old_records_info: [None]
+[2026-02-22 18:34:36,205] INFO [custom_dns_script:992] Tao Inside DNS F[CreateOrUpdateDnsRecords] old record empty auth_params: [{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_dns_script', 'dynamic_name': 'cas_config_wf'}], new_records_i
+nfo: [{'ips': {'v4_ips': ['30.30.10.11'], 'v6_ips': []}, 'dns_info': {'walker_creek_v11.cas.local': {'ttl': 60, 'type': 'DNS_RECORD_A', 'cname': '', 'metadata': ''}}}], old_records_info: [None]
+[2026-02-22 18:34:36,274] INFO [custom_dns_script:253] record_name[walker_creek_v11.cas.local], POST req[https://192.168.1.160/wapi/v2.13.8/record:host?_return_fields=ipv4addrs,ipv6addrs {"name": "walker_creek_v11.cas.local", "view": "default", "ipv4addrs": [{"ipv4addr": "30.30.10.11"}], "ipv6addrs": []}] status_code[201]
+[2026-02-22 18:34:36,275] INFO [custom_dns_script:256] Tao Inside DNS F[_create_dns_record] r_json: [{'_ref': 'record:host/ZG5zLmhvc3QkLl9kZWZhdWx0LmxvY2FsLmNhcy53YWxrZXJfY3JlZWtfdjEx:walker_creek_v11.cas.local/default', 'ipv4addrs': [{'_ref': 'record:host_ipv4addr/ZG5zLmhvc3RfYWRkcmVzcyQuX2RlZmF1bHQubG9jYWwuY2FzLndhbGtlcl9jcmVla192MTEuMzAuMzAuMTAuMTEu:30.30.10
+.11/walker_creek_v11.cas.local/default', 'configure_for_dhcp': False, 'host': 'walker_creek_v11.cas.local', 'ipv4addr': '30.30.10.11'}]}]
+root@192-168-1-125:/var/lib/avi/log#
+
+
+
+Case 5:
+Delete IPAM and DNS record
+root@192-168-1-125:/var/lib/avi/log#  tail -100 custom_ipam_script.log
+[2026-02-22 18:51:37,294] INFO [custom_ipam_script:71] Inside F[_verify_required_fields_in_auth_params] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script'}]
+[2026-02-22 18:51:37,295] INFO [custom_ipam_script:700] Inside F[DeleteIpamRecord] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': '<sensitive>', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script'}] record_info[{'id': 'vsvip-5637896c-199c-4dc4-8e57-0862a532eb99', 'fqdns': ['walker_creek_v11.cas.local']}]
+[2026-02-22 18:51:37,295] INFO [custom_ipam_script:701] Tao Inside F[DeleteIpamRecord] auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_ipam_script'}] and record_info[{'id': 'vsvip-5637896c-199c-4dc4-8e57-0862a532eb99', 'fqdns': ['walker_creek_v11.cas.local']}]
+[2026-02-22 18:51:38,426] INFO [custom_ipam_script:778] F[DeleteIpamRecord] req[https://192.168.1.160/wapi/v2.13.8/record:host?name=vsvip-5637896c-199c-4dc4-8e57-0862a532eb99] status_code[200]
+[2026-02-22 18:51:38,461] INFO [custom_ipam_script:793] F[DeleteIpamRecord] req[https://192.168.1.160/wapi/v2.13.8/record:host/ZG5zLmhvc3QkLm5vbl9ETlNfaG9zdF9yb290LjAuMTc3MTc4NTI1ODExMi52c3ZpcC01NjM3ODk2Yy0xOTljLTRkYzQtOGU1Ny0wODYyYTUzMmViOTk:vsvip-5637896c-199c-4dc4-8e57-0862a532eb99/%20] status_code[200]
+root@192-168-1-125:/var/lib/avi/log#
+
+root@192-168-1-125:/var/lib/avi/log# more custom_dns_script.log
+[2026-02-13 03:13:32,108] INFO [custom_dns_script:166] Inside fake DNS F[TestLogin] auth_params: {'username': 'k198528', 'password': 'VMware1!', 'server': '192.168.1.160', 'logger_name': 'custom_dns_script', 'cloud_uuid': ['cloud-7ff26519-0e26-4c9c-90da-95609237b672']}
+[2026-02-22 18:34:36,204] INFO [custom_dns_script:84] Tao Inside DNS F[_verify_required_fields_in_auth_params] auth_params: [{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_dns_script', 'dynamic_name': 'cas_config_wf'}]
+[2026-02-22 18:34:36,205] INFO [custom_dns_script:976] new_records_info[{'ips': {'v4_ips': ['30.30.10.11'], 'v6_ips': []}, 'dns_info': {'walker_creek_v11.cas.local': {'ttl': 60, 'type': 'DNS_RECORD_A', 'cname': '', 'metadata': ''}}}], old_records_info[None], auth_params[{'server': '192.168.1.160', 'username': 'admin', 'password': '<sensitive>', 'wapi_version':
+'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_dns_script', 'dynamic_name': 'cas_config_wf'}]
+[2026-02-22 18:34:36,205] INFO [custom_dns_script:978] Tao Inside DNS F[CreateOrUpdateDnsRecords] auth_params: [{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_dns_script', 'dynamic_name': 'cas_config_wf'}], new_records_info: [{'ips': {'v
+4_ips': ['30.30.10.11'], 'v6_ips': []}, 'dns_info': {'walker_creek_v11.cas.local': {'ttl': 60, 'type': 'DNS_RECORD_A', 'cname': '', 'metadata': ''}}}], old_records_info: [None]
+[2026-02-22 18:34:36,205] INFO [custom_dns_script:992] Tao Inside DNS F[CreateOrUpdateDnsRecords] old record empty auth_params: [{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_dns_script', 'dynamic_name': 'cas_config_wf'}], new_records_i
+nfo: [{'ips': {'v4_ips': ['30.30.10.11'], 'v6_ips': []}, 'dns_info': {'walker_creek_v11.cas.local': {'ttl': 60, 'type': 'DNS_RECORD_A', 'cname': '', 'metadata': ''}}}], old_records_info: [None]
+[2026-02-22 18:34:36,274] INFO [custom_dns_script:253] record_name[walker_creek_v11.cas.local], POST req[https://192.168.1.160/wapi/v2.13.8/record:host?_return_fields=ipv4addrs,ipv6addrs {"name": "walker_creek_v11.cas.local", "view": "default", "ipv4addrs": [{"ipv4addr": "30.30.10.11"}], "ipv6addrs": []}] status_code[201]
+[2026-02-22 18:34:36,275] INFO [custom_dns_script:256] Tao Inside DNS F[_create_dns_record] r_json: [{'_ref': 'record:host/ZG5zLmhvc3QkLl9kZWZhdWx0LmxvY2FsLmNhcy53YWxrZXJfY3JlZWtfdjEx:walker_creek_v11.cas.local/default', 'ipv4addrs': [{'_ref': 'record:host_ipv4addr/ZG5zLmhvc3RfYWRkcmVzcyQuX2RlZmF1bHQubG9jYWwuY2FzLndhbGtlcl9jcmVla192MTEuMzAuMzAuMTAuMTEu:30.30.10
+.11/walker_creek_v11.cas.local/default', 'configure_for_dhcp': False, 'host': 'walker_creek_v11.cas.local', 'ipv4addr': '30.30.10.11'}]}]
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+[2026-02-22 18:51:41,705] INFO [custom_dns_script:84] Tao Inside DNS F[_verify_required_fields_in_auth_params] auth_params: [{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_dns_script', 'dynamic_name': 'cas_config_wf'}]
+[2026-02-22 18:51:41,706] INFO [custom_dns_script:940] records_info {'ips': {'v4_ips': ['30.30.10.11'], 'v6_ips': []}, 'dns_info': {'walker_creek_v11.cas.local': {'ttl': 60, 'type': 'DNS_RECORD_A', 'cname': '', 'metadata': ''}}}, auth_params {'server': '192.168.1.160', 'username': 'admin', 'password': '<sensitive>', 'wapi_version': 'v2.13.8', 'dns_view': 'defau
+lt', 'network_view': 'default', 'logger_name': 'custom_dns_script', 'dynamic_name': 'cas_config_wf'}
+[2026-02-22 18:51:41,706] INFO [custom_dns_script:941] Tao Inside DNS F[DeleteDnsRecords] records_info: [{'ips': {'v4_ips': ['30.30.10.11'], 'v6_ips': []}, 'dns_info': {'walker_creek_v11.cas.local': {'ttl': 60, 'type': 'DNS_RECORD_A', 'cname': '', 'metadata': ''}}}], auth_params: [{'server': '192.168.1.160', 'username': 'admin', 'password': 'infoblox', 'wapi_version': 'v2.13.8', 'dns_view': 'default', 'network_view': 'default', 'logger_name': 'custom_dns_script', 'dynamic_name': 'cas_config_wf'}]
+[2026-02-22 18:51:42,711] INFO [custom_dns_script:699] record_name[walker_creek_v11.cas.local], GET req[https://192.168.1.160/wapi/v2.13.8/record:host?name=walker_creek_v11.cas.local&view=default] status_code[200]
+[2026-02-22 18:51:42,711] INFO [custom_dns_script:742] All IPs match for record[walker_creek_v11.cas.local], deleting entire record. Matching v4_ips[['30.30.10.11']], v6_ips[[]]
+[2026-02-22 18:51:43,881] INFO [custom_dns_script:748] record_name[walker_creek_v11.cas.local], DELETE req[https://192.168.1.160/wapi/v2.13.8/record:host/ZG5zLmhvc3QkLl9kZWZhdWx0LmxvY2FsLmNhcy53YWxrZXJfY3JlZWtfdjEx:walker_creek_v11.cas.local/default] status_code[200]
+root@192-168-1-125:/var/lib/avi/log#
