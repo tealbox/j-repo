@@ -1,0 +1,87 @@
+root@ansible588:~/wf# more t.yaml
+---
+- name: Create VIP using subnet or label
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars:
+    avi_controller: "192.168.5.89"
+    avi_username: "admin"
+    avi_password: "58NFaGDJm(PJH0G"
+    avi_tenant: "admin"
+    avi_cloud: "Default-Cloud"
+
+    avi_credentials:
+      controller: "{{ avi_controller }}"
+      username: "{{ avi_username }}"
+      password: "{{ avi_password }}"
+      api_version: "22.1.7"
+
+  tasks:
+
+    #######################################################################
+    # OPTION 1: CREATE VIP USING SUBNET (NO LABELS)
+    #######################################################################
+    - name: Create VIP using subnet
+      vmware.alb.avi_vsvip:
+        avi_credentials: "{{ avi_credentials }}"
+        name: "vip-using-subnet"
+        cloud_ref: "/api/cloud?name={{ avi_cloud }}"
+
+        vip:
+          - vip_id: "1"
+            auto_allocate_ip: true
+            auto_allocate_floating_ip: false
+            subnet:
+              mask: 24
+              ip_addr:
+                type: "V4"
+                addr: "10.1.2.0"   # <-- Subnet base address
+
+        state: present
+
+root@ansible588:~/wf# more t1.yaml
+---
+- name: Create VIP using subnet or label
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars:
+    avi_controller: "192.168.5.89"
+    avi_username: "admin"
+    avi_password: "58NFaGDJm(PJH0G"
+    avi_tenant: "admin"
+    avi_cloud: "Default-Cloud"
+
+    avi_credentials:
+      controller: "{{ avi_controller }}"
+      username: "{{ avi_username }}"
+      password: "{{ avi_password }}"
+      api_version: "22.1.7"
+
+  tasks:
+
+    #######################################################################
+    # OPTION 1: CREATE VIP USING SUBNET (NO LABELS)
+    #######################################################################
+    - name: Create VIP using subnet
+      vmware.alb.avi_vsvip:
+        avi_credentials: "{{ avi_credentials }}"
+        name: "teal03"
+        cloud_ref: "/api/cloud?name={{ avi_cloud }}"
+
+        vip:
+          - vip_id: "1"
+            auto_allocate_ip: true
+            auto_allocate_floating_ip: false
+            subnet:
+              mask: 24
+              ip_addr:
+                type: "V4"
+                addr: "10.1.2.0"   # <-- Subnet base address
+        dns_info:
+          - fqdn: "teal04.wf.net"
+
+        state: present
