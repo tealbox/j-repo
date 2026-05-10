@@ -1,0 +1,28 @@
+
+---
+- name: To get List of API
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    api: "gslb"
+    ansible_verbosity: 0
+    ansible_deprecation_warnings: false
+    ansible_command_warnings: false
+    ansible_inventory_enabled: false
+
+  vars_files:
+    - vars/avi.yml
+
+
+  tasks:
+    - name: Get AVI API version
+      vmware.alb.avi_api_session:
+        avi_credentials: "{{ avi_credentials }}"
+        http_method: get
+        path: "{{ api }}"
+      register: avi_get_session_output
+    
+    - name: Print Debug
+      ansible.builtin.debug:
+        msg: "API Output: {{ avi_get_session_output.obj }}"

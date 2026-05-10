@@ -1,0 +1,20 @@
+
+---
+- name: To get List of API
+  hosts: localhost
+  gather_facts: false
+
+  vars_files:
+    - vars/avi.yml
+
+
+  tasks:
+    - name: Get AVI API version
+      vmware.alb.avi_api_version:
+        avi_credentials: "{{ avi_credentials }}"
+        tenant: "admin"
+      register: avi_controller_version
+    
+    - name: Print Debug
+      ansible.builtin.debug:
+        msg: "API Version: {{ avi_controller_version }}"
