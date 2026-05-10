@@ -1,0 +1,11 @@
+controller: "192.168.5.94"
+username: "admin"
+password: "VMware1!VMware1!"
+tenant: "admin"
+api_version: "22.1.7"
+cloud: "/api/cloud/?name=Default-Cloud"
+avi_credentials:
+      username: "{{ username }}"
+      password: "{{ password }}"
+      controller: "{{ controller }}"
+      api_version: "{{ api_version }}"
