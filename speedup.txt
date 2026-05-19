@@ -1,0 +1,149 @@
+# speedup.ps1
+# Right‑click Start -> Terminal -> run
+# powershell -ExecutionPolicy Bypass -File .\speedup.ps1
+# Disable animations and improve performance (no admin required)
+# C:\Windows\System32\SystemPropertiesPerformance.exe
+Write-Host "Applying performance tweaks..."
+# Ensure registry paths exist
+New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Accessibility" -Force | Out-Null
+# Disable menu delay
+Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "MenuShowDelay" -Value "0"
+# Disable window animations
+Set-ItemProperty -Path "HKCU:\Control Panel\Desktop\WindowMetrics" -Name "MinAnimate" -Value "0"
+# Visual effects: best performance
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" -Name "VisualFXSetting" -Value 2
+# Disable taskbar animations
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarAnimations" -Value 0
+# Disable transparency
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" -Name "EnableTransparency" -Value 0
+# Disable animations (accessibility)
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Accessibility" -Name "AnimationEffect" -Value 0
+Write-Host "Enabling classic right-click menu..."
+$path = "HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32"
+# Create required keys
+New-Item -Path $path -Force | Out-Null
+# Set default value to empty
+Set-ItemProperty -Path $path -Name "(default)" -Value "" -Force
+# Restart Explorer
+Write-Host "Restarting Explorer..."
+Stop-Process -Name explorer -Force
+Start-Process explorer
+Write-Host "Done! Full right-click menu enabled (no 'Show more options')."
+
+
+# ----------------------------
+# Revert (restore default Windows 11 menu)
+# Remove-Item -Path "HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" -Recurse -Force
+# Stop-Process -Name explorer -Force
+# Start-Process explorer
+# ----------------------------
+
+
+
+# ultra_lite_mode.ps1
+# C:\Windows\System32\SystemPropertiesPerformance.exe
+# powershell -ExecutionPolicy Bypass -File .\ultra_lite_mode.ps1
+# Focus: UI speed + responsiveness + zero policy violations
+Write-Host "Applying Ultra Lite Performance Mode..." -ForegroundColor Cyan
+# Avoid noisy errors
+$ErrorActionPreference = "SilentlyContinue"
+# -------------------------------
+# 🔹 1. Disable ALL Animations (Safe)
+# -------------------------------
+Write-Host "Disabling animations..."
+Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "MenuShowDelay" -Value "0"
+Set-ItemProperty -Path "HKCU:\Control Panel\Desktop\WindowMetrics" -Name "MinAnimate" -Value "0"
+New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" -Force | Out-Null
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" -Name "VisualFXSetting" -Value 2
+New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Accessibility" -Force | Out-Null
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Accessibility" -Name "AnimationEffect" -Value 0
+# -------------------------------
+# 🔹 2. Disable Transparency (Safe)
+# -------------------------------
+Write-Host "Disabling transparency..."
+New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" -Force | Out-Null
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" -Name "EnableTransparency" -Value 0
+# -------------------------------
+# 🔹 3. Instant Context Menu (Safe + HUGE UX boost)
+# -------------------------------
+Write-Host "Enabling classic right-click menu..."
+$menuPath = "HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32"
+New-Item -Path $menuPath -Force | Out-Null
+Set-ItemProperty -Path $menuPath -Name "(default)" -Value ""
+# -------------------------------
+# 🔹 4. Faster UI Response (Very Safe)
+# -------------------------------
+Write-Host "Improving responsiveness..."
+Set-ItemProperty -Path "HKCU:\Control Panel\Mouse" -Name "MouseHoverTime" -Value "0"
+Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "ForegroundLockTimeout" -Value 0
+# -------------------------------
+# 🔹 5. Remove Startup Delay (Safe, non-invasive)
+# -------------------------------
+Write-Host "Removing startup lag..."
+New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Serialize" -Force | Out-Null
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Serialize" -Name "StartupDelayInMSec" -Value 0
+# -------------------------------
+# 🔹 6. Light Explorer Cleanup (Safe visuals only)
+# -------------------------------
+Write-Host "Cleaning Explorer visuals..."
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarAnimations" -Value 0
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ListviewShadow" -Value 0
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ListviewAlphaSelect" -Value 0
+# -------------------------------
+# 🔹 Apply Changes
+# -------------------------------
+Write-Host "Restarting Explorer..." -ForegroundColor Yellow
+Stop-Process -Name explorer -Force
+Start-Process explorer
+Write-Host ""
+Write-Host "✅ ULTRA LITE MODE ENABLED" -ForegroundColor Green
+Write-Host "✔ No animations"
+Write-Host "✔ Instant right-click"
+Write-Host "✔ Faster menus & response"
+Write-Host "✔ Safe for corporate laptops"
+Write-Host ""
+
+
+
+
+
+
+
+#-------------------------------------------------------------------------------
+# Name:        caps on/off
+import ctypes
+from time import sleep
+import keyboard
+def send_ctrl_alt_0_user():
+    keyboard.write("xxxxxx")
+def send_ctrl_alt_9_passwd():
+    keyboard.press_and_release('ctrl+alt+9')
+    keyboard.write("xxxxxx")
+def send_ctrl_alt_8_code():
+    keyboard.write("xxxxxx")
+def send_ctrl9():
+    keyboard.write(mmmmm)
+def send_ctrl0():
+    keyboard.write("xxxxxx")
+# Register hotkeys
+keyboard.add_hotkey("ctrl+9", send_ctrl9)
+keyboard.add_hotkey("ctrl+0", send_ctrl0)
+keyboard.add_hotkey('ctrl+alt+0', send_ctrl_alt_0_user)
+keyboard.add_hotkey('ctrl+alt+8', send_ctrl_alt_8_code)
+keyboard.add_hotkey('ctrl+alt+9', send_ctrl_alt_9_passwd)
+def caps(toggle=1):
+    VK_CAPITAL = 0x14
+    ctypes.windll.user32.keybd_event(VK_CAPITAL, 0, 0, 0)
+    ctypes.windll.user32.keybd_event(VK_CAPITAL, 0, 0X0002, 0)
+    sleep(.1)
+    ctypes.windll.user32.keybd_event(VK_CAPITAL, 0, 0, 0)
+    ctypes.windll.user32.keybd_event(VK_CAPITAL, 0, 0X0002, 0)
+def main():
+    hllDll = ctypes.WinDLL ("User32.dll")
+    while True:
+        caps()
+        sleep(180)
+    pass
+if __name__ == '__main__':
+    main()
+#-------------------------------------------------------------------------------
