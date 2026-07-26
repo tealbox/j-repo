@@ -1,3 +1,5 @@
+Note: When creating ssl cert for Depo use FQDN and IP (in SAN) required for VCF9.1
+
 Transfer vcf-9.0.1.0-offline-depot-metadata.zip to /nfs/vmware/vcf/nfs-mount
 Extract file.
 
@@ -42,7 +44,8 @@ cd /opt/vmware/vcf/lcm/lcm-tools/bin
 hostnamectl 
 cd /v sddcmgr101
 
-root@sddcmgr131 [ /opt/vmware/vcf/lcm/lcm-tools/bin ]# bash vcf-download-tool binaries upload -d /nfs/vmware/vcf/nfs-mount -u admin@local --sddc-manager-fqdn sddcmgr101bash vcf-download-tool binaries upload -d /nfs/vmware/vcf/nfs-mount -u admin@local --sddc-manager-fqdn sddcmgr101
+root@sddcmgr131 [ /opt/vmware/vcf/lcm/lcm-tools/bin ]# bash vcf-download-tool binaries upload -d /nfs/vmware/vcf/nfs-mount -u admin@local --sddc-manager-fqdn sddcmgr101
+# bash vcf-download-tool binaries upload -d /nfs/vmware/vcf/nfs-mount -u admin@local --sddc-manager-fqdn sddcmgr101
 *********Welcome to VMware Cloud Foundation Download Tool***********
 
 
