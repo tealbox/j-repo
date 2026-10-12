@@ -1,3 +1,6 @@
+## DNS Record commands.
+
+```
 DnsCmd localhost /RecordAdd vcf.lab dc1-w16-dns-ntp-30-5 /CreatePTR A 192.168.30.5
 DnsCmd localhost /RecordAdd vcf.lab dc1-depo-30-51 /CreatePTR A 192.168.30.51
 DnsCmd localhost /RecordAdd vcf.lab dc1-inst-88-52 /CreatePTR A 192.168.88.52
@@ -24,3 +27,5 @@ DnsCmd localhost /RecordAdd vcf.lab dc1-m-vna-88-87 /CreatePTR A 192.168.88.87
 DnsCmd localhost /RecordAdd vcf.lab dc1-m-vcflog-88-89 /CreatePTR A 192.168.88.89
 DnsCmd localhost /RecordAdd vcf.lab dc1-m-vcfonp-88-90 /CreatePTR A 192.168.88.90
 DnsCmd localhost /RecordAdd vcf.lab dc1-m-vcfonc-88-91 /CreatePTR A 192.168.88.91
+DnsCmd localhost /RecordAdd vcf.lab dc1-m-c-proxy-88-92 /CreatePTR A 192.168.88.92
+```
